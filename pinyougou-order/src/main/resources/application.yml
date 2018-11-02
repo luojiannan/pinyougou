@@ -1,4 +1,4 @@
-server.port : 8080
+server.port : 8081
 
 spring:
 # 配置rabbitMQspring:
@@ -9,7 +9,7 @@ spring:
     password: guest
     virtual-host: spring-boot-vhost
   application:
-    name: user-feign
+    name: order-feign
 
 
   datasource :
