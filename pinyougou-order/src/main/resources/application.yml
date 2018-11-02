@@ -9,7 +9,7 @@ spring:
     password: guest
     virtual-host: spring-boot-vhost
   application:
-    name: order-feign
+    name: order-server
 
 
   datasource :

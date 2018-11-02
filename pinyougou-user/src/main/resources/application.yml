@@ -9,7 +9,7 @@ spring:
     password: guest
     virtual-host: spring-boot-vhost
   application:
-    name: user-feign
+    name: user-server
 
 
   datasource :

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author ljn
  * @date 2018/11/2.
  */
-@FeignClient("user-feign")
+@FeignClient("user-server")
 public interface IUserFeign {
 
     @RequestMapping(value = "user/getUser", method = RequestMethod.GET)
