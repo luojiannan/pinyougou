@@ -1,0 +1,44 @@
+server.port : 8084
+
+spring:
+# 配置rabbitMQspring:
+  rabbitmq:
+    host: 120.78.170.24
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: spring-boot-vhost
+  application:
+    name: goods-server
+
+
+  datasource :
+      url : jdbc:mysql://120.78.170.24:3306/pinyougoudb
+      username : root
+      password : root
+      driver-class-name : com.mysql.jdbc.Driver
+  redis.database : 0
+  redis.host : 120.78.170.24
+  redis.port : 6379
+  redis.password : 103021
+  redis.pool.max-total : 8
+  redis.pool.max-wait : -1
+  redis.pool.max-idle : 8
+  redis.pool.min-idle : 0
+  redis.pool.timeout : 10000
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://localhost:1111/eureka
+
+
+  # 显示ip地址  不写就显示主机名称
+  instance:
+    prefer-ip-address : true
+    instance-id: ${spring.application.name}
+
+ribbon.ReadTimeout: 6000
+# 设置连接超时时间
+ribbon.ConnectTimeout: 600
