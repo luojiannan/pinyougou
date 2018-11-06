@@ -1,0 +1,27 @@
+server.port : 8080
+
+spring:
+# 配置rabbitMQspring:
+  rabbitmq:
+    host: 120.78.170.24
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: spring-boot-vhost
+  application:
+    name: backend-server
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://localhost:1111/eureka
+
+
+  # 显示ip地址  不写就显示主机名称
+  instance:
+    prefer-ip-address : true
+    instance-id: ${spring.application.name}
+
+ribbon.ReadTimeout: 6000
+# 设置连接超时时间
+ribbon.ConnectTimeout: 600
