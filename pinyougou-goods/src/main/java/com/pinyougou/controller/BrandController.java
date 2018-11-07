@@ -46,6 +46,8 @@ public class BrandController {
         Page<Brand> pages = (Page<Brand>) brandMapper.selectByExample(null);
         response.setTotalCount(pages.getTotal());
         response.setData(pages.getResult());
+        response.setPageIndex(page);
+        response.setPageSize(size);
         return response;
     }
 }
