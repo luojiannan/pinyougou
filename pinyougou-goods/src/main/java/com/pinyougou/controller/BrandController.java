@@ -1,7 +1,10 @@
 package com.pinyougou.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.dao.entity.Brand;
+import com.pinyougou.dao.mapper.BrandMapper;
 import com.pinyougou.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +24,24 @@ public class BrandController {
     @Autowired
     private IBrandService brandService;
 
+    @Autowired
+    private BrandMapper brandMapper;
+
     @GetMapping("getAll")
     public BaseResponse getAllBrand(){
         BaseResponse response = new BaseResponse();
         List<Brand> brands = brandService.getAllBrand();
         response.setData(brands);
+        return response;
+    }
+
+    @GetMapping("getBrandList")
+    public BaseResponse getBrandList(int page,int size){
+        BaseResponse response = new BaseResponse();
+        PageHelper.startPage(page, size);
+        Page<Brand> pages = (Page<Brand>) brandMapper.selectByExample(null);
+        response.setTotalCount(pages.getTotal());
+        response.setData(pages.getResult());
         return response;
     }
 }
