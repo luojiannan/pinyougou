@@ -1,6 +1,6 @@
 package com.pinyougou.controller;
 
-import com.alibaba.fastjson.JSONObject;
+import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.dao.entity.Brand;
 import com.pinyougou.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,10 @@ public class BrandController {
     private IBrandService brandService;
 
     @GetMapping("getAll")
-    public String getAllBrand(){
+    public BaseResponse getAllBrand(){
+        BaseResponse response = new BaseResponse();
         List<Brand> brands = brandService.getAllBrand();
-        String json = JSONObject.toJSONString(brands);
-        return json;
+        response.setData(brands);
+        return response;
     }
 }

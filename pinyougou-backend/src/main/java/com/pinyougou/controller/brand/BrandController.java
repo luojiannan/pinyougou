@@ -1,5 +1,6 @@
 package com.pinyougou.controller.brand;
 
+import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.feign.IBrandFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class BrandController {
     private IBrandFeign brandFeign;
 
     @GetMapping("getBrand")
-    public String getBrand() {
+    public BaseResponse getBrand() {
         return brandFeign.getBrand();
     }
 }
