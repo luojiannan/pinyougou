@@ -61,4 +61,17 @@ public class BrandController {
         }
         return response;
     }
+
+    @GetMapping("deleteById")
+    @ApiOperation(value="删除品牌", notes="删除品牌")
+    public BaseResponse deleteById(@RequestParam("id") long id) {
+        BaseResponse response = new BaseResponse();
+        try{
+            brandMapper.deleteByPrimaryKey(id);
+        }catch (RuntimeException e) {
+            response.setCode("01");
+            response.setErrorMessage("删除品牌发生错误");
+        }
+        return response;
+    }
 }
