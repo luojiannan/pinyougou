@@ -3,11 +3,12 @@ package com.pinyougou.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.pinyougou.common.dto.BaseResponse;
+import com.pinyougou.common.utils.BeanMapper;
 import com.pinyougou.dao.entity.Brand;
 import com.pinyougou.dao.mapper.BrandMapper;
+import com.pinyougou.dto.BrandDTO;
 import com.pinyougou.service.IBrandService;
 import io.swagger.annotations.ApiOperation;
-import org.omg.CORBA.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,9 +52,10 @@ public class BrandController {
 
     @PostMapping("createBrand")
     @ApiOperation(value="新增品牌", notes="新增品牌")
-    public BaseResponse createBrand(@RequestBody Brand brand) {
+    public BaseResponse createBrand(@RequestBody BrandDTO brandDTO) {
         BaseResponse response = new BaseResponse();
         try{
+            Brand brand = BeanMapper.map(brandDTO, Brand.class);
             brandService.createBrand(brand);
         }catch (RuntimeException e) {
             response.setCode("01");

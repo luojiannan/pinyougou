@@ -1,13 +1,11 @@
 package com.pinyougou.controller.brand;
 
 import com.pinyougou.common.dto.BaseResponse;
+import com.pinyougou.dto.BrandDTO;
 import com.pinyougou.feign.IBrandFeign;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author ljn
@@ -37,5 +35,17 @@ public class BrandController {
             size  = 20;
         }
         return brandFeign.getBrandList(page,size);
+    }
+
+    @GetMapping("createBrand")
+    @ApiOperation(value="新增品牌", notes="新增品牌")
+    public BaseResponse createBrand(@RequestBody BrandDTO brandDTO) {
+        return brandFeign.createBrand(brandDTO);
+    }
+
+    @GetMapping("deleteById")
+    @ApiOperation(value="删除品牌", notes="删除品牌")
+    public BaseResponse deleteById(@RequestParam(value = "id") Long id) {
+        return brandFeign.deleteById(id);
     }
 }
