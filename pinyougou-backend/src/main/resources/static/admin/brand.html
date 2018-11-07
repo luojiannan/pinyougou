@@ -21,7 +21,7 @@
 			$scope.findAll=function() {
 				$http.get('http://localhost:8080/backend/brand/getBrand').success(
 						function(response) {
-							$scope.list = response;
+							$scope.list = response.data;
 						}
 				)
 			}
