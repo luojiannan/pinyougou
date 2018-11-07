@@ -11,4 +11,6 @@ import java.util.List;
 public interface IBrandService {
 
     List<Brand> getAllBrand();
+
+    void createBrand(Brand brand);
 }

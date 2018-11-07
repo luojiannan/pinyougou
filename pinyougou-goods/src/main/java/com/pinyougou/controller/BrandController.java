@@ -7,11 +7,9 @@ import com.pinyougou.dao.entity.Brand;
 import com.pinyougou.dao.mapper.BrandMapper;
 import com.pinyougou.service.IBrandService;
 import io.swagger.annotations.ApiOperation;
+import org.omg.CORBA.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,6 +46,19 @@ public class BrandController {
         response.setData(pages.getResult());
         response.setPageIndex(page);
         response.setPageSize(size);
+        return response;
+    }
+
+    @PostMapping("createBrand")
+    @ApiOperation(value="新增品牌", notes="新增品牌")
+    public BaseResponse createBrand(@RequestBody Brand brand) {
+        BaseResponse response = new BaseResponse();
+        try{
+            brandService.createBrand(brand);
+        }catch (RuntimeException e) {
+            response.setCode("01");
+            response.setErrorMessage("新增品牌发生错误");
+        }
         return response;
     }
 }

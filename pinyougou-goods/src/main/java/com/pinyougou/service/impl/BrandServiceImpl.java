@@ -22,4 +22,9 @@ public class BrandServiceImpl implements IBrandService {
     public List<Brand> getAllBrand() {
         return brandMapper.selectAll();
     }
+
+    @Override
+    public void createBrand(Brand brand) {
+        brandMapper.insert(brand);
+    }
 }
