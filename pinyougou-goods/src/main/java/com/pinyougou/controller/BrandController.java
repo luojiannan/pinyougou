@@ -6,9 +6,11 @@ import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.dao.entity.Brand;
 import com.pinyougou.dao.mapper.BrandMapper;
 import com.pinyougou.service.IBrandService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,6 +30,7 @@ public class BrandController {
     private BrandMapper brandMapper;
 
     @GetMapping("getAll")
+    @ApiOperation(value="查询所有品牌", notes="查询所有品牌")
     public BaseResponse getAllBrand(){
         BaseResponse response = new BaseResponse();
         List<Brand> brands = brandService.getAllBrand();
@@ -36,7 +39,8 @@ public class BrandController {
     }
 
     @GetMapping("getBrandList")
-    public BaseResponse getBrandList(int page,int size){
+    @ApiOperation(value="分页查询品牌", notes="分页查询品牌")
+    public BaseResponse getBrandList(@RequestParam("page") int page, @RequestParam("size") int size){
         BaseResponse response = new BaseResponse();
         PageHelper.startPage(page, size);
         Page<Brand> pages = (Page<Brand>) brandMapper.selectByExample(null);
