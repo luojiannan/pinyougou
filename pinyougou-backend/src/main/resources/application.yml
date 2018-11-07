@@ -14,7 +14,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone : http://localhost:1111/eureka
+      defaultZone : http://120.78.170.24:1111/eureka
 
 
   # 显示ip地址  不写就显示主机名称
