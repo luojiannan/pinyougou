@@ -28,8 +28,7 @@ public class BrandController {
 
     @PostMapping("getBrandList")
     @ApiOperation(value="分页查询品牌", notes="分页查询品牌")
-    public BaseResponse getBrandList(@RequestBody(required = false) BrandDTO brandDTO,@RequestParam(value = "page",required = false) Integer page,
-                                     @RequestParam(value = "size",required = false) Integer size) {
+    public BaseResponse getBrandList(@RequestBody(required = false) BrandDTO brandDTO,Integer page, Integer size) {
         if (page == null) {
             page = 0;
         }

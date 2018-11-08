@@ -21,7 +21,7 @@ public interface IBrandFeign {
     BaseResponse getBrand();
 
     @RequestMapping(value = "brand/getBrandList", method = RequestMethod.POST)
-    BaseResponse getBrandList(@RequestBody(required = false) BrandDTO brandDTO, @RequestParam("page")int page,@RequestParam("size")int size);
+    BaseResponse getBrandList(@RequestBody(required = false) BrandDTO brandDTO, @RequestParam("page") Integer page, @RequestParam("size") Integer size);
 
     @RequestMapping(value = "brand/createBrand", method = RequestMethod.POST)
     BaseResponse createBrand(@RequestBody BrandDTO brand);

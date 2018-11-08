@@ -38,7 +38,7 @@ public class BrandController {
 
     @PostMapping("getBrandList")
     @ApiOperation(value="分页查询品牌", notes="分页查询品牌")
-    public BaseResponse getBrandList(@RequestBody(required = false) BrandDTO brand, @RequestParam("page") int page, @RequestParam("size") int size){
+    public BaseResponse getBrandList(@RequestBody(required = false) BrandDTO brand, Integer page,  Integer size){
         BaseResponse response = new BaseResponse();
         PageHelper.startPage(page, size);
         Map<String, Object> params = new HashMap<>();
