@@ -41,12 +41,12 @@
 					$scope.reloadList()
 				}
 			};
-
+			//刷新列表
 			$scope.reloadList = function(){
 				$scope.getBrandList($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage)
 			}
 
-
+			//分页
 			$scope.getBrandList = function(page,size) {
 				$http.get('http://localhost:8080/backend/brand/getBrandList?page=' + page + "&size=" + size).success(
 						function(response) {
@@ -54,7 +54,21 @@
 							$scope.paginationConf.totalItems = response.totalCount;
 						}
 				)
+			};
+
+			//新增
+			$scope.add = function() {
+				$http.post('http://localhost:8080/backend/brand/createBrand', $scope.brand).success(
+						function(response) {
+							if (response.code == "00") {
+								$scope.reloadList();
+							} else {
+								alert(response.message)
+							}
+						}
+				)
 			}
+			//删除
 		})
 	</script>
     
@@ -137,16 +151,16 @@
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
 		      		<td>品牌名称</td>
-		      		<td><input  class="form-control" placeholder="品牌名称" >  </td>
+		      		<td><input  class="form-control" placeholder="品牌名称" ng-model="brand.name">  </td>
 		      	</tr>		      	
 		      	<tr>
 		      		<td>首字母</td>
-		      		<td><input  class="form-control" placeholder="首字母">  </td>
+		      		<td><input  class="form-control" placeholder="首字母" ng-model="brand.firstChar">  </td>
 		      	</tr>		      	
 			 </table>				
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="add()">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>

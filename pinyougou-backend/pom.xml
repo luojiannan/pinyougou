@@ -71,6 +71,12 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.7.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.pinyougou</groupId>
+			<artifactId>pinyougou-common</artifactId>
+			<version>0.0.2</version>
+		</dependency>
 	</dependencies>
 
 

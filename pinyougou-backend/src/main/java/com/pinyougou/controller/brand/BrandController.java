@@ -37,10 +37,10 @@ public class BrandController {
         return brandFeign.getBrandList(page,size);
     }
 
-    @GetMapping("createBrand")
+    @PostMapping("createBrand")
     @ApiOperation(value="新增品牌", notes="新增品牌")
-    public BaseResponse createBrand(@RequestBody BrandDTO brandDTO) {
-        return brandFeign.createBrand(brandDTO);
+    public BaseResponse createBrand(@RequestBody BrandDTO brand) {
+        return brandFeign.createBrand(brand);
     }
 
     @GetMapping("deleteById")
