@@ -3,6 +3,7 @@ package com.pinyougou.service;
 import com.pinyougou.dao.entity.Brand;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ljn
@@ -13,4 +14,12 @@ public interface IBrandService {
     List<Brand> getAllBrand();
 
     void createBrand(Brand brand);
+
+    void updateBrand(Brand brand);
+
+    Brand findById(Long id);
+
+    void batchDelete(List<Long> ids);
+
+    List<Brand> selectByMap(Map<String,Object> map,int page,int size,String orderBy,boolean isAsc);
 }

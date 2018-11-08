@@ -9,4 +9,34 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="first_char" property="firstChar" jdbcType="VARCHAR" />
   </resultMap>
+
+  <select id="selectByMap" parameterType="map" resultMap="BaseResultMap">
+      select * from tb_brand
+      <include refid="selectSql"/>
+      <if test="ORDERBY != null and ORDERBY != ''">
+        ORDER BY ${ORDERBY}
+      </if>
+      <if test="ORDER != null and ORDER != ''">
+        ${ORDER}
+      </if>
+      <if test="limit != null">
+        LIMIT #{limit}
+      </if>
+      <if test="start != null">
+        OFFSET #{start}
+      </if>
+  </select>
+
+  <sql id="selectSql">
+    <where>
+      <trim prefixOverrides="AND">
+        <if test="name != null and name != ''">
+          AND name = #{name}
+        </if>
+        <if test="firstChar != null and firstChar != ''">
+          AND first_char = #{firstChar}
+        </if>
+      </trim>
+    </where>
+  </sql>
 </mapper>

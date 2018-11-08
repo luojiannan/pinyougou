@@ -3,8 +3,8 @@ package com.pinyougou.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.pinyougou.common.dto.BaseResponse;
+import com.pinyougou.common.utils.ParamUtils;
 import com.pinyougou.dao.entity.Brand;
-import com.pinyougou.dao.mapper.BrandMapper;
 import com.pinyougou.dto.BrandDTO;
 import com.pinyougou.service.IBrandService;
 import com.pinyougou.utils.BeanMapper;
@@ -12,7 +12,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ljn
@@ -25,9 +27,6 @@ public class BrandController {
     @Autowired
     private IBrandService brandService;
 
-    @Autowired
-    private BrandMapper brandMapper;
-
     @GetMapping("getAll")
     @ApiOperation(value="查询所有品牌", notes="查询所有品牌")
     public BaseResponse getAllBrand(){
@@ -37,12 +36,16 @@ public class BrandController {
         return response;
     }
 
-    @GetMapping("getBrandList")
+    @PostMapping("getBrandList")
     @ApiOperation(value="分页查询品牌", notes="分页查询品牌")
-    public BaseResponse getBrandList(@RequestParam("page") int page, @RequestParam("size") int size){
+    public BaseResponse getBrandList(@RequestBody(required = false) BrandDTO brand, @RequestParam("page") int page, @RequestParam("size") int size){
         BaseResponse response = new BaseResponse();
         PageHelper.startPage(page, size);
-        Page<Brand> pages = (Page<Brand>) brandMapper.selectByExample(null);
+        Map<String, Object> params = new HashMap<>();
+        if (brand != null) {
+            params = ParamUtils.convertMap(brand);
+        }
+        Page<Brand> pages = (Page<Brand>) brandService.selectByMap(params,page,size,"id",false);
         response.setTotalCount(pages.getTotal());
         response.setData(pages.getResult());
         response.setPageIndex(page);
@@ -64,15 +67,43 @@ public class BrandController {
         return response;
     }
 
-    @GetMapping("deleteById")
+    @GetMapping("batchDelete")
     @ApiOperation(value="删除品牌", notes="删除品牌")
-    public BaseResponse deleteById(@RequestParam("id") long id) {
+    public BaseResponse batchDelete(@RequestParam("ids") List<Long> ids) {
         BaseResponse response = new BaseResponse();
         try{
-            brandMapper.deleteByPrimaryKey(id);
-        }catch (RuntimeException e) {
+            brandService.batchDelete(ids);
+        }catch (Exception e) {
             response.setCode("01");
             response.setErrorMessage("删除品牌发生错误");
+        }
+        return response;
+    }
+
+    @PostMapping("updateBrand")
+    @ApiOperation(value="修改品牌", notes="修改品牌")
+    public BaseResponse updateBrand(@RequestBody BrandDTO brandDTO) {
+        BaseResponse response = new BaseResponse();
+        try{
+            Brand brand = BeanMapper.map(brandDTO, Brand.class);
+            brandService.updateBrand(brand);
+        }catch (Exception e) {
+            response.setCode("01");
+            response.setErrorMessage("修改品牌发生错误");
+        }
+        return response;
+    }
+
+    @GetMapping("findById")
+    @ApiOperation(value="修改品牌", notes="修改品牌")
+    public BaseResponse findById(@RequestParam("id") long id) {
+        BaseResponse response = new BaseResponse();
+        try{
+            Brand brand = brandService.findById(id);
+            response.setResult(brand);
+        }catch (Exception e) {
+            response.setCode("01");
+            response.setErrorMessage("修改品牌发生错误");
         }
         return response;
     }
