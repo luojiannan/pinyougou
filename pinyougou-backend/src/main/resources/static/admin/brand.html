@@ -18,100 +18,12 @@
 	<script src="../plugins/angularjs/pagination.js"></script>
 	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
 	<!--分页组件结束-->
+	<script type="text/javascript" src="../js/base_pagination.js"></script>
+	<script type="text/javascript" src="../js/service/brandService.js"></script>
+	<script type="text/javascript" src="../js/controller/baseController.js"></script>
+	<script type="text/javascript" src="../js/controller/brandController.js"></script>
 
-	<script type="text/javascript">
-		var app = angular.module('pinyougou',['pagination']);
-		app.controller('brandController',function($scope,$http) {
-			//查询品牌列表
-//			$scope.findAll=function() {
-//				$http.get('http://localhost:8080/backend/brand/getBrand').success(
-//						function(response) {
-//							$scope.list = response.data;
-//						}
-//				)
-//			};
 
-			//分页控件配置
-			$scope.paginationConf = {
-				currentPage: 1,
-				totalItems: 10,
-				itemsPerPage: 15,
-				perPageOptions:[10, 20, 30, 40, 50],
-				onChange:function(){
-					$scope.reloadList()
-				}
-			};
-			//刷新列表
-			$scope.reloadList = function(){
-				$scope.getBrandList($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage)
-			}
-
-			//分页
-			$scope.searchEntity={};
-			$scope.getBrandList = function(page,size) {
-				$http.post('http://localhost:8080/backend/brand/getBrandList?page=' + page + "&size=" + size,$scope.searchEntity).success(
-						function(response) {
-							$scope.list = response.data;//显示当前页的数据
-							$scope.paginationConf.totalItems = response.totalCount;
-						}
-				)
-			};
-
-			//新增
-			$scope.save = function() {
-				var methodName = "createBrand";
-				if ($scope.entity.id != null) {
-					methodName = "updateBrand"
-				}
-				$http.post('http://localhost:8080/backend/brand/'+methodName, $scope.entity).success(
-						function(response) {
-							if (response.code == "00") {
-								$scope.reloadList();
-							} else {
-								alert(response.message)
-							}
-						}
-				)
-			};
-			$scope.selectedIds = [];
-			$scope.updateSeletion = function($event, id) {
-				if ($event.target.checked) {
-					$scope.selectedIds.push(id);
-				} else {
-					var index = $scope.selectedIds.indexOf(id);
-					//index要移除的元素下表，1要移除的元素个数
-					$scope.selectedIds.splice(index,1);
-				}
-			}
-
-			//删除
-			$scope.batchDelete = function() {
-				var ids = $scope.selectedIds;
-				$http.get('http://localhost:8080/backend/brand/batchDelete?ids=' + ids).success(
-						function(response) {
-							if (response.code == "00") {
-								$scope.reloadList();
-							}else {
-								alert(response.message)
-							}
-						}
-				)
-			}
-
-			$scope.findById = function(id) {
-				$http.get('http://localhost:8080/backend/brand/findById?id=' + id).success(
-						function(response) {
-							if (response.code == "00") {
-								$scope.entity = response.result;
-							}else {
-								alert(response.message)
-							}
-						}
-				)
-			}
-
-		})
-	</script>
     
 </head>
 <body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="brandController" >
