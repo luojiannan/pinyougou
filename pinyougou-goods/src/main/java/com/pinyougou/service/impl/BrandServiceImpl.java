@@ -54,7 +54,7 @@ public class BrandServiceImpl implements IBrandService {
     }
 
     @Override
-    public List<Brand> selectByMap(Map<String, Object> map,int page,int size,String orderBy,boolean isAsc) {
+    public List<Brand> selectByMap(Map<String, Object> map,String orderBy,boolean isAsc) {
         if (StringUtils.isNotBlank(orderBy)) {
             map.put("ORDERBY",orderBy);
             if (isAsc) {

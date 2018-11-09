@@ -45,7 +45,7 @@ public class BrandController {
         if (brand != null) {
             params = ParamUtils.convertMap(brand);
         }
-        Page<Brand> pages = (Page<Brand>) brandService.selectByMap(params,page,size,"id",false);
+        Page<Brand> pages = (Page<Brand>) brandService.selectByMap(params,"id",false);
         response.setTotalCount(pages.getTotal());
         response.setData(pages.getResult());
         response.setPageIndex(page);

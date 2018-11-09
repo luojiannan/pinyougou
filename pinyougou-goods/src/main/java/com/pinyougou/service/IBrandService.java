@@ -21,5 +21,5 @@ public interface IBrandService {
 
     void batchDelete(List<Long> ids);
 
-    List<Brand> selectByMap(Map<String,Object> map,int page,int size,String orderBy,boolean isAsc);
+    List<Brand> selectByMap(Map<String,Object> map,String orderBy,boolean isAsc);
 }
