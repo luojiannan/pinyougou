@@ -36,5 +36,13 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
 
+        <table tableName="tb_specification" domainObjectName="Specification">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+        <table tableName="tb_specification_option" domainObjectName="SpecificationOption">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
     </context>
 </generatorConfiguration>

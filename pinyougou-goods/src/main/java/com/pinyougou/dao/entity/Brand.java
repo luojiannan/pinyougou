@@ -2,6 +2,10 @@ package com.pinyougou.dao.entity;
 
 import javax.persistence.*;
 
+/**
+ * @author ljn
+ */
+
 @Table(name = "tb_brand")
 public class Brand {
     @Id

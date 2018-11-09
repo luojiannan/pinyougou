@@ -7,6 +7,10 @@ import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author ljn
+ */
+
 @Component
 public interface BrandMapper extends Mapper<Brand> {
 
