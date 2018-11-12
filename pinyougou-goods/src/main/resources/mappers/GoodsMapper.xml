@@ -22,4 +22,52 @@
     <result column="is_enable_spec" property="isEnableSpec" jdbcType="VARCHAR" />
     <result column="is_delete" property="isDelete" jdbcType="VARCHAR" />
   </resultMap>
+
+  <select id="selectByMap" resultType="map" resultMap="BaseResultMap">
+      select * from tb_goods
+    <include refid="selectSql" />
+    <if test="ORDERBY != null and ORDERBY != ''">
+      ORDER BY ${ORDERBY}
+    </if>
+    <if test="ORDER != null and ORDER != ''">
+      ${ORDER}
+    </if>
+    <if test="limit != null">
+      LIMIT #{limit}
+    </if>
+    <if test="start != null">
+      OFFSET #{start}
+    </if>
+  </select>
+
+  <sql id="selectSql">
+    <where>
+      <trim prefixOverrides="AND">
+        <if test="sellerId != null and sellerId != ''">
+          AND seller_id = #{sellerId}
+        </if>
+        <if test="goodsName != null and goodsName != ''">
+          AND name LIKE '%${goodsName}%'
+        </if>
+        <if test="auditStatus != null ">
+          AND audit_status = #{auditStatus}
+        </if>
+        <if test="isMarketable != null ">
+          AND is_market_able = #{isMarketable}
+        </if>
+        <if test="caption != null and caption != ''">
+        AND caption = #{caption}
+        </if>
+        <if test="smallPic != null and smallPic != ''">
+          AND small_pic = #{smallPic}
+        </if>
+        <if test="IsEnableSpec != null ">
+          AND is_enable_spec = #{IsEnableSpec}
+        </if>
+        <if test="isDelete != null ">
+          AND is_delete = #{isDelete}
+        </if>
+      </trim>
+    </where>
+  </sql>
 </mapper>
