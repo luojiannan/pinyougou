@@ -1,7 +1,9 @@
 package com.pinyougou.dao.entity;
 
 import javax.persistence.*;
-
+/**
+ * @author ljn
+ */
 @Table(name = "tb_item_cat")
 public class ItemCat {
     /**

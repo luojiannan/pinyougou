@@ -1,7 +1,9 @@
 package com.pinyougou.dao.entity;
 
 import javax.persistence.*;
-
+/**
+ * @author ljn
+ */
 @Table(name = "tb_type_template")
 public class TypeTemplate {
     @Id

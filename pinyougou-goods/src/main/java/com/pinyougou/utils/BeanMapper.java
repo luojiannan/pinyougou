@@ -10,7 +10,7 @@ import java.beans.PropertyDescriptor;
 import java.util.*;
 
 /**
- * Created by LinShu on 2017/3/16.
+ * @author  LinShu on 2017/3/16.
  */
 public class BeanMapper {
     private static DozerBeanMapper dozer = new DozerBeanMapper();

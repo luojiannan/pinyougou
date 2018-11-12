@@ -3,6 +3,9 @@ package com.pinyougou.dao.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * @author ljn
+ */
 @Table(name = "tb_goods")
 public class Goods {
     /**
