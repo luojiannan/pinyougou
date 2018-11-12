@@ -3,6 +3,7 @@ package com.pinyougou.dao.entity;
 import javax.persistence.*;
 /**
  * @author ljn
+ * 商品描述
  */
 @Table(name = "tb_goods_desc")
 public class GoodsDesc {

@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 /**
  * @author ljn
+ * 品牌
  */
 
 @Table(name = "tb_brand")

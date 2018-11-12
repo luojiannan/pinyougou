@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 /**
  * @author ljn
+ * 规格
  */
 
 @Table(name = "tb_specification")

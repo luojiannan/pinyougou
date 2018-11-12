@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 /**
  * @author ljn
+ * 商品
  */
 @Table(name = "tb_goods")
 public class Goods {
