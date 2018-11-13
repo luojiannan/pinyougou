@@ -7,6 +7,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * controller
@@ -32,7 +33,7 @@ public interface ISpecificationFeign {
 	 */
 	@RequestMapping(value = "specification/findPage", method = RequestMethod.GET)
 	@ApiOperation(value="分页查询全部规格", notes="分页查询全部规格")
-	BaseResponse findPage(int page,int rows);
+	BaseResponse findPage(@RequestParam("page") int page,@RequestParam("rows") int rows);
 	
 	/**
 	 * 增加
@@ -59,7 +60,7 @@ public interface ISpecificationFeign {
 	 */
 	@RequestMapping(value = "specification/findOne", method = RequestMethod.GET)
 	@ApiOperation(value="根据id查询规格", notes="根据id查询规格")
-	BaseResponse findOne(Long id);
+	BaseResponse findOne(@RequestParam("id")Long id);
 	
 	/**
 	 * 批量删除
@@ -68,7 +69,7 @@ public interface ISpecificationFeign {
 	 */
 	@RequestMapping(value = "specification/delete", method = RequestMethod.GET)
 	@ApiOperation(value="批量删除规格", notes="批量删除规格")
-	BaseResponse delete(Long [] ids);
+	BaseResponse delete(@RequestParam("ids")Long [] ids);
 	
 		/**
 	 * 查询+分页
@@ -78,6 +79,6 @@ public interface ISpecificationFeign {
 	 */
 	@RequestMapping(value = "specification/search", method = RequestMethod.POST)
 	@ApiOperation(value="按条件分页查询规格", notes="按条件分页查询规格")
-	BaseResponse search(@RequestBody SpecificationDTO specification, int page, int rows  );
+	BaseResponse search(@RequestBody SpecificationDTO specification, @RequestParam("page") int page, @RequestParam("rows") int rows);
 	
 }

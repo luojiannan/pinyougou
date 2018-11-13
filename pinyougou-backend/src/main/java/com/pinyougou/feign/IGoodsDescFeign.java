@@ -31,7 +31,7 @@ public interface IGoodsDescFeign {
 	@GetMapping("/findPage")
 	@RequestMapping(value = "goodsDesc/findPage", method = RequestMethod.GET)
 	@ApiOperation(value="分页商品描述", notes="分页商品描述")
-	BaseResponse findPage(int page,int rows);
+	BaseResponse findPage(@RequestParam("page") int page,@RequestParam("rows") int rows);
 	
 	/**
 	 * 增加
@@ -58,7 +58,7 @@ public interface IGoodsDescFeign {
 	 */
 	@RequestMapping(value = "goodsDesc/findOne", method = RequestMethod.GET)
 	@ApiOperation(value="根据id查询商品描述", notes="根据id查询商品描述")
-	BaseResponse findOne(Long id);
+	BaseResponse findOne(@RequestParam("id")Long id);
 	
 	/**
 	 * 批量删除
@@ -67,7 +67,7 @@ public interface IGoodsDescFeign {
 	 */
 	@RequestMapping(value = "goodsDesc/delete", method = RequestMethod.GET)
 	@ApiOperation(value="批量删除商品描述", notes="批量删除商品描述")
-	BaseResponse delete(Long [] ids);
+	BaseResponse delete(@RequestParam("ids")Long [] ids);
 	
 	/**
 	 * 查询+分页
@@ -78,6 +78,6 @@ public interface IGoodsDescFeign {
 	 */
 	@RequestMapping(value = "goodsDesc/search", method = RequestMethod.POST)
 	@ApiOperation(value="分页查询商品描述", notes="分页查询商品描述")
-	BaseResponse search(@RequestBody GoodsDescDTO goodsDesc, int page, int rows  );
+	BaseResponse search(@RequestBody GoodsDescDTO goodsDesc, @RequestParam("page") int page,@RequestParam("rows") int rows );
 	
 }

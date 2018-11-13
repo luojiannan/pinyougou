@@ -147,7 +147,9 @@ public class TypeTemplateController {
 		BaseResponse response = new BaseResponse();
 		try{
 			TypeTemplate typeTemplate = BeanMapper.map(typeTemplateDTO, TypeTemplate.class);
-			typeTemplateService.findPage(typeTemplate, page, rows);
+			Page data = typeTemplateService.findPage(typeTemplate, page, rows);
+			response.setTotalCount(data.getTotal());
+			response.setData(data.getResult());
 		}catch (Exception e){
 			e.printStackTrace();
 			response.setErrorMessage(e.getMessage());

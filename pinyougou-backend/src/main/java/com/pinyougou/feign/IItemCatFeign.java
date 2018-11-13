@@ -29,7 +29,7 @@ public interface IItemCatFeign {
 	 */
 	@RequestMapping(value = "itemCat/findPage", method = RequestMethod.GET)
 	@ApiOperation(value="分页查询类目", notes="分页查询类目")
-	BaseResponse  findPage(int page,int rows);
+	BaseResponse  findPage(@RequestParam("page") int page,@RequestParam("rows") int rows);
 	
 	/**
 	 * 增加
@@ -58,7 +58,7 @@ public interface IItemCatFeign {
 	@GetMapping("/findOne")
 	@RequestMapping(value = "itemCat/findOne", method = RequestMethod.GET)
 	@ApiOperation(value="根据id查询类目", notes="根据id查询类目")
-	BaseResponse findOne(Long id);
+	BaseResponse findOne(@RequestParam("id")Long id);
 	
 	/**
 	 * 批量删除
@@ -68,7 +68,7 @@ public interface IItemCatFeign {
 	@GetMapping("/delete")
 	@RequestMapping(value = "itemCat/delete", method = RequestMethod.GET)
 	@ApiOperation(value="批量删除类目", notes="批量删除类目")
-	BaseResponse delete(Long [] ids);
+	BaseResponse delete(@RequestParam("ids")Long [] ids);
 	
 		/**
 	 * 查询+分页
@@ -79,6 +79,6 @@ public interface IItemCatFeign {
 	@PostMapping("/search")
 	@RequestMapping(value = "itemCat/search", method = RequestMethod.POST)
 	@ApiOperation(value="分页查询类目", notes="分页查询类目")
-	BaseResponse search(@RequestBody ItemCatDTO itemCat, int page, int rows);
+	BaseResponse search(@RequestBody ItemCatDTO itemCat, @RequestParam("page") int page,@RequestParam("rows") int rows);
 	
 }

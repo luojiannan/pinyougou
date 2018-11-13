@@ -7,6 +7,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * controller
@@ -31,7 +32,7 @@ public interface ISellerFeign {
 	 */
 	@RequestMapping(value = "seller/findPage", method = RequestMethod.GET)
 	@ApiOperation(value="分页查询卖家", notes="分页查询卖家")
-	BaseResponse  findPage(int page,int rows);
+	BaseResponse  findPage(@RequestParam("page") int page,@RequestParam("rows") int rows);
 	
 	/**
 	 * 增加
@@ -58,7 +59,7 @@ public interface ISellerFeign {
 	 */
 	@RequestMapping(value = "seller/findOne", method = RequestMethod.GET)
 	@ApiOperation(value="根据id查询卖家", notes="根据id查询卖家")
-	BaseResponse findOne(Long id);
+	BaseResponse findOne(@RequestParam("id")Long id);
 	
 	/**
 	 * 批量删除
@@ -67,7 +68,7 @@ public interface ISellerFeign {
 	 */
 	@RequestMapping(value = "seller/delete", method = RequestMethod.GET)
 	@ApiOperation(value="批量删除卖家", notes="批量删除卖家")
-	BaseResponse delete(Long [] ids);
+	BaseResponse delete(@RequestParam("ids")Long [] ids);
 	
 		/**
 	 * 查询+分页
@@ -77,6 +78,6 @@ public interface ISellerFeign {
 	 */
 	@RequestMapping(value = "seller/search", method = RequestMethod.POST)
 	@ApiOperation(value="分页查询卖家", notes="分页查询卖家")
-	BaseResponse search(@RequestBody SellerDTO seller, int page, int rows  );
+	BaseResponse search(@RequestBody SellerDTO seller, @RequestParam("page") int page, @RequestParam("rows") int rows);
 	
 }

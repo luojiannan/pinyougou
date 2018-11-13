@@ -21,7 +21,7 @@ public interface IGoodsFeign {
 	 */
 	@ApiOperation(value="分页商品列表", notes="分页商品列表")
 	@RequestMapping(value = "goods/findPage", method = RequestMethod.GET)
-	BaseResponse findPage(int page, int rows);
+	BaseResponse findPage(@RequestParam("page") int page,@RequestParam("rows") int rows);
 
 	
 	/**
@@ -57,7 +57,7 @@ public interface IGoodsFeign {
 	 */
 	@RequestMapping(value = "goods/findOne", method = RequestMethod.GET)
 	@ApiOperation(value="获取商品实体", notes="获取商品实体")
-	BaseResponse findOne(Long id);
+	BaseResponse findOne(@RequestParam("id")Long id);
 	
 	/**
 	 * 批量删除
@@ -66,7 +66,7 @@ public interface IGoodsFeign {
 	 */
 	@RequestMapping(value = "goods/delete", method = RequestMethod.GET)
 	@ApiOperation(value="批量删除商品", notes="批量删除商品")
-	BaseResponse delete(Long [] ids);
+	BaseResponse delete(@RequestParam("ids")Long [] ids);
 	
 		/**
 	 * 查询+分页
@@ -77,6 +77,6 @@ public interface IGoodsFeign {
 	 */
 	@RequestMapping(value = "goods/search", method = RequestMethod.POST)
 	@ApiOperation(value="查询+分页商品", notes="查询+分页商品")
-	BaseResponse search(@RequestBody GoodsDTO goods, int page, int rows  );
+	BaseResponse search(@RequestBody GoodsDTO goods,@RequestParam("page") int page,@RequestParam("rows") int rows );
 	
 }

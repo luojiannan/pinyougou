@@ -29,7 +29,7 @@ public interface ISpecificationOptionFeign {
 	 */
 	@RequestMapping(value = "specificationOption/findPage", method = RequestMethod.GET)
 	@ApiOperation(value="分页查询规格选择", notes="分页查询卖家选择")
-	BaseResponse findPage(int page,int rows);
+	BaseResponse findPage(@RequestParam("page") int page,@RequestParam("rows") int rows);
 	
 	/**
 	 * 增加
@@ -56,7 +56,7 @@ public interface ISpecificationOptionFeign {
 	 */
 	@RequestMapping(value = "specificationOption/findOne", method = RequestMethod.GET)
 	@ApiOperation(value="根据id查询规格选择", notes="根据id查询规格选择")
-	BaseResponse findOne(Long id);
+	BaseResponse findOne(@RequestParam("id")Long id);
 	
 	/**
 	 * 批量删除
@@ -65,7 +65,7 @@ public interface ISpecificationOptionFeign {
 	 */
 	@RequestMapping(value = "specificationOption/delete", method = RequestMethod.GET)
 	@ApiOperation(value="批量删除规格选择", notes="批量删除规格选择")
-	BaseResponse delete(Long [] ids);
+	BaseResponse delete(@RequestParam("ids")Long [] ids);
 	
 		/**
 	 * 查询+分页
@@ -75,6 +75,6 @@ public interface ISpecificationOptionFeign {
 	 */
 	@RequestMapping(value = "specificationOption/search", method = RequestMethod.POST)
 	@ApiOperation(value="按条件分页查询规格选择", notes="按条件分页查询规格选择")
-	BaseResponse search(@RequestBody SpecificationOptionDTO specificationOption, int page, int rows  );
+	BaseResponse search(@RequestBody SpecificationOptionDTO specificationOption,@RequestParam("page") int page,@RequestParam("rows") int rows);
 	
 }
