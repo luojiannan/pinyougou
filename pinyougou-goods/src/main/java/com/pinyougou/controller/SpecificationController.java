@@ -3,7 +3,9 @@ package com.pinyougou.controller;
 import com.github.pagehelper.Page;
 import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.dao.entity.Specification;
+import com.pinyougou.dto.SpecificationDTO;
 import com.pinyougou.service.ISpecificationService;
+import com.pinyougou.utils.BeanMapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -62,14 +64,15 @@ public class SpecificationController {
 	
 	/**
 	 * 增加
-	 * @param specification
+	 * @param specificationDTO
 	 * @return
 	 */
 	@PostMapping("/add")
 	@ApiOperation(value="增加规格", notes="增加规格")
-	public BaseResponse add(@RequestBody Specification specification){
+	public BaseResponse add(@RequestBody SpecificationDTO specificationDTO){
 		BaseResponse response = new BaseResponse();
 		try{
+			Specification specification = BeanMapper.map(specificationDTO, Specification.class);
 			specificationService.add(specification);
 		}catch (Exception e){
 			e.printStackTrace();
@@ -80,14 +83,15 @@ public class SpecificationController {
 	
 	/**
 	 * 修改
-	 * @param specification
+	 * @param specificationDTO
 	 * @return
 	 */
 	@RequestMapping("/update")
 	@ApiOperation(value="修改规格", notes="修改规格")
-	public BaseResponse update(@RequestBody Specification specification){
+	public BaseResponse update(@RequestBody SpecificationDTO specificationDTO){
 		BaseResponse response = new BaseResponse();
 		try{
+			Specification specification = BeanMapper.map(specificationDTO, Specification.class);
 			specificationService.update(specification);
 		}catch (Exception e){
 			e.printStackTrace();

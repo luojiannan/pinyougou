@@ -3,7 +3,9 @@ package com.pinyougou.controller;
 import com.github.pagehelper.Page;
 import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.dao.entity.GoodsDesc;
+import com.pinyougou.dto.GoodsDescDTO;
 import com.pinyougou.service.IGoodsDescService;
+import com.pinyougou.utils.BeanMapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -61,14 +63,15 @@ public class GoodsDescController {
 	
 	/**
 	 * 增加
-	 * @param goodsDesc
+	 * @param goodsDescDTO
 	 * @return
 	 */
 	@PostMapping("/add")
 	@ApiOperation(value="增加商品描述", notes="增加商品描述")
-	public BaseResponse add(@RequestBody GoodsDesc goodsDesc){
+	public BaseResponse add(@RequestBody GoodsDescDTO goodsDescDTO){
 		BaseResponse response = new BaseResponse();
 		try {
+			GoodsDesc goodsDesc = BeanMapper.map(goodsDescDTO, GoodsDesc.class);
 			goodsDescService.add(goodsDesc);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -79,14 +82,15 @@ public class GoodsDescController {
 	
 	/**
 	 * 修改
-	 * @param goodsDesc
+	 * @param goodsDescDTO
 	 * @return
 	 */
 	@PostMapping("/update")
 	@ApiOperation(value="修改商品描述", notes="修改商品描述")
-	public BaseResponse update(@RequestBody GoodsDesc goodsDesc){
+	public BaseResponse update(@RequestBody GoodsDescDTO goodsDescDTO){
 		BaseResponse response = new BaseResponse();
 		try {
+			GoodsDesc goodsDesc = BeanMapper.map(goodsDescDTO, GoodsDesc.class);
 			goodsDescService.update(goodsDesc);
 		} catch (Exception e) {
 			e.printStackTrace();

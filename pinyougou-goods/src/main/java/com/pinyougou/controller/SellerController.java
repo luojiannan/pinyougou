@@ -2,7 +2,9 @@ package com.pinyougou.controller;
 
 import com.github.pagehelper.Page;
 import com.pinyougou.common.dto.BaseResponse;
+import com.pinyougou.common.utils.BeanMapper;
 import com.pinyougou.dao.entity.Seller;
+import com.pinyougou.dto.SellerDTO;
 import com.pinyougou.service.ISellerService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,14 +64,15 @@ public class SellerController {
 	
 	/**
 	 * 增加
-	 * @param seller
+	 * @param sellerDTO
 	 * @return
 	 */
 	@PostMapping("/add")
 	@ApiOperation(value="增加卖家", notes="增加卖家")
-	public BaseResponse add(@RequestBody Seller seller){
+	public BaseResponse add(@RequestBody SellerDTO sellerDTO){
 		BaseResponse response = new BaseResponse();
 		try{
+			Seller seller = BeanMapper.map(sellerDTO, Seller.class);
 			sellerService.add(seller);
 		}catch (Exception e){
 			e.printStackTrace();
@@ -80,14 +83,15 @@ public class SellerController {
 	
 	/**
 	 * 修改
-	 * @param seller
+	 * @param sellerDTO
 	 * @return
 	 */
 	@PostMapping("/update")
 	@ApiOperation(value="修改卖家", notes="修改卖家")
-	public BaseResponse update(@RequestBody Seller seller){
+	public BaseResponse update(@RequestBody SellerDTO sellerDTO){
 		BaseResponse response = new BaseResponse();
 		try{
+			Seller seller = BeanMapper.map(sellerDTO, Seller.class);
 			sellerService.update(seller);
 		}catch (Exception e){
 			e.printStackTrace();

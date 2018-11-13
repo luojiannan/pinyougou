@@ -3,8 +3,10 @@ package com.pinyougou.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.pinyougou.common.dto.BaseResponse;
+import com.pinyougou.common.utils.BeanMapper;
 import com.pinyougou.common.utils.ParamUtils;
 import com.pinyougou.dao.entity.Goods;
+import com.pinyougou.dto.GoodsDTO;
 import com.pinyougou.service.IGoodsService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,14 +70,15 @@ public class GoodsController {
 	
 	/**
 	 * 增加
-	 * @param goods
+	 * @param goodsDTO
 	 * @return
 	 */
 	@PostMapping("/add")
 	@ApiOperation(value="增加商品", notes="增加商品")
-	public BaseResponse add(@RequestBody Goods goods){
+	public BaseResponse add(@RequestBody GoodsDTO goodsDTO){
 		BaseResponse response = new BaseResponse();
 		try {
+			Goods goods = BeanMapper.map(goodsDTO, Goods.class);
 			goodsService.add(goods);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,14 +89,15 @@ public class GoodsController {
 	
 	/**
 	 * 修改
-	 * @param goods
+	 * @param goodsDTO
 	 * @return
 	 */
 	@PostMapping("/update")
 	@ApiOperation(value="修改商品", notes="修改商品")
-	public BaseResponse update(@RequestBody Goods goods){
+	public BaseResponse update(@RequestBody GoodsDTO goodsDTO){
 		BaseResponse response = new BaseResponse();
 		try {
+			Goods goods = BeanMapper.map(goodsDTO, Goods.class);
 			goodsService.update(goods);
 		} catch (Exception e) {
 			e.printStackTrace();

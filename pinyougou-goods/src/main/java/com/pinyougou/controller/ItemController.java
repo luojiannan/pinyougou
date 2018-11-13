@@ -3,7 +3,9 @@ package com.pinyougou.controller;
 import com.github.pagehelper.Page;
 import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.dao.entity.Item;
+import com.pinyougou.dto.ItemDTO;
 import com.pinyougou.service.IItemService;
+import com.pinyougou.utils.BeanMapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -62,14 +64,15 @@ public class ItemController {
 	
 	/**
 	 * 增加
-	 * @param item
+	 * @param itemDTO
 	 * @return
 	 */
 	@PostMapping("/add")
 	@ApiOperation(value="增加类目", notes="增加类目")
-	public BaseResponse add(@RequestBody Item item){
+	public BaseResponse add(@RequestBody ItemDTO itemDTO){
 		BaseResponse response = new BaseResponse();
 		try{
+			Item item = BeanMapper.map(itemDTO, Item.class);
 			itemService.add(item);
 		}catch (Exception e){
 			e.printStackTrace();
@@ -80,14 +83,15 @@ public class ItemController {
 	
 	/**
 	 * 修改
-	 * @param item
+	 * @param itemDTO
 	 * @return
 	 */
 	@PostMapping("/update")
 	@ApiOperation(value="修改类目", notes="修改类目")
-	public BaseResponse update(@RequestBody Item item){
+	public BaseResponse update(@RequestBody ItemDTO itemDTO){
 		BaseResponse response = new BaseResponse();
 		try{
+			Item item = BeanMapper.map(itemDTO, Item.class);
 			itemService.update(item);
 		}catch (Exception e){
 			e.printStackTrace();

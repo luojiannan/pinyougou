@@ -3,7 +3,9 @@ package com.pinyougou.controller;
 import com.github.pagehelper.Page;
 import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.dao.entity.SpecificationOption;
+import com.pinyougou.dto.SpecificationOptionDTO;
 import com.pinyougou.service.ISpecificationOptionService;
+import com.pinyougou.utils.BeanMapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -62,14 +64,15 @@ public class SpecificationOptionController {
 	
 	/**
 	 * 增加
-	 * @param specificationOption
+	 * @param specificationOptionDTO
 	 * @return
 	 */
 	@PostMapping("/add")
 	@ApiOperation(value="增加规格选择", notes="增加规格选择")
-	public BaseResponse add(@RequestBody SpecificationOption specificationOption){
+	public BaseResponse add(@RequestBody SpecificationOptionDTO specificationOptionDTO){
 		BaseResponse response = new BaseResponse();
 		try{
+			SpecificationOption specificationOption = BeanMapper.map(specificationOptionDTO, SpecificationOption.class);
 			specificationOptionService.add(specificationOption);
 		}catch (Exception e){
 			e.printStackTrace();
@@ -80,14 +83,15 @@ public class SpecificationOptionController {
 	
 	/**
 	 * 修改
-	 * @param specificationOption
+	 * @param specificationOptionDTO
 	 * @return
 	 */
 	@PostMapping("/update")
 	@ApiOperation(value="修改规格选择", notes="修改规格选择")
-	public BaseResponse update(@RequestBody SpecificationOption specificationOption){
+	public BaseResponse update(@RequestBody SpecificationOptionDTO specificationOptionDTO){
 		BaseResponse response = new BaseResponse();
 		try{
+			SpecificationOption specificationOption = BeanMapper.map(specificationOptionDTO, SpecificationOption.class);
 			specificationOptionService.update(specificationOption);
 		}catch (Exception e){
 			e.printStackTrace();

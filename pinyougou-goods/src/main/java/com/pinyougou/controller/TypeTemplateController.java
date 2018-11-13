@@ -2,7 +2,9 @@ package com.pinyougou.controller;
 
 import com.github.pagehelper.Page;
 import com.pinyougou.common.dto.BaseResponse;
+import com.pinyougou.common.utils.BeanMapper;
 import com.pinyougou.dao.entity.TypeTemplate;
+import com.pinyougou.dto.TypeTemplateDTO;
 import com.pinyougou.service.ITypeTemplateService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,14 +55,15 @@ public class TypeTemplateController {
 	
 	/**
 	 * 增加
-	 * @param typeTemplate
+	 * @param typeTemplateDTO
 	 * @return
 	 */
 	@PostMapping("/add")
 	@ApiOperation(value="增加模板", notes="增加模板")
-	public BaseResponse add(@RequestBody TypeTemplate typeTemplate){
+	public BaseResponse add(@RequestBody TypeTemplateDTO typeTemplateDTO){
 		BaseResponse response = new BaseResponse();
 		try {
+			TypeTemplate typeTemplate = BeanMapper.map(typeTemplateDTO, TypeTemplate.class);
 			typeTemplateService.add(typeTemplate);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,14 +74,15 @@ public class TypeTemplateController {
 	
 	/**
 	 * 修改
-	 * @param typeTemplate
+	 * @param typeTemplateDTO
 	 * @return
 	 */
 	@PostMapping("/update")
 	@ApiOperation(value="修改模板", notes="修改模板")
-	public BaseResponse update(@RequestBody TypeTemplate typeTemplate){
+	public BaseResponse update(@RequestBody TypeTemplateDTO typeTemplateDTO){
 		BaseResponse response = new BaseResponse();
 		try {
+			TypeTemplate typeTemplate = BeanMapper.map(typeTemplateDTO, TypeTemplate.class);
 			typeTemplateService.update(typeTemplate);
 		} catch (Exception e) {
 			e.printStackTrace();
