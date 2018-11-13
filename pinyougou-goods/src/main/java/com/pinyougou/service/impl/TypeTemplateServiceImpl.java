@@ -7,6 +7,7 @@ import com.pinyougou.dao.mapper.TypeTemplateMapper;
 import com.pinyougou.service.ITypeTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -43,6 +44,7 @@ public class TypeTemplateServiceImpl implements ITypeTemplateService {
 	 * 增加
 	 */
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void add(TypeTemplate typeTemplate) {
 		typeTemplateMapper.insert(typeTemplate);		
 	}
@@ -52,6 +54,7 @@ public class TypeTemplateServiceImpl implements ITypeTemplateService {
 	 * 修改
 	 */
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void update(TypeTemplate typeTemplate){
 		typeTemplateMapper.updateByPrimaryKey(typeTemplate);
 	}	
@@ -70,6 +73,7 @@ public class TypeTemplateServiceImpl implements ITypeTemplateService {
 	 * 批量删除
 	 */
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void delete(Long[] ids) {
 		for(Long id:ids){
 			typeTemplateMapper.deleteByPrimaryKey(id);
