@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Administrator
  *
  */
-@FeignClient("goods")
+@FeignClient("goods-server")
 public interface ISpecificationFeign {
 
 

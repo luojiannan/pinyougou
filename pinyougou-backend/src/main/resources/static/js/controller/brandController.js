@@ -16,7 +16,7 @@ app.controller('brandController',function($scope,$controller,brandService) {
 
     //分页
     $scope.searchEntity={};
-    $scope.getBrandList = function(page,size) {
+    $scope.search = function(page,size) {
         brandService.getBrandList(page,size,$scope.searchEntity).success(
             function(response) {
                 $scope.list = response.data;//显示当前页的数据

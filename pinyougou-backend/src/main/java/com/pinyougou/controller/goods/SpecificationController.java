@@ -92,7 +92,7 @@ public class SpecificationController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="按条件分页查询规格", notes="按条件分页查询规格")
-	public BaseResponse search(@RequestBody SpecificationDTO specificationDTO, int page, int rows  ){
+	public BaseResponse search(@RequestBody SpecificationDTO specificationDTO, Integer page, Integer rows  ){
 		return specificationFeign.search(specificationDTO, page, rows);
 	}
 	
