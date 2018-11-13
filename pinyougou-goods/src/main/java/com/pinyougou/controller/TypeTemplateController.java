@@ -30,8 +30,16 @@ public class TypeTemplateController {
 	 */
 	@GetMapping("/findAll")
 	@ApiOperation(value="查询全部模板", notes="查询全部模板")
-	public List<TypeTemplate> findAll(){
-		return typeTemplateService.findAll();
+	public BaseResponse findAll(){
+		BaseResponse response = new BaseResponse();
+		try{
+			List<TypeTemplate> list = typeTemplateService.findAll();
+			response.setData(list);
+		}catch (Exception e){
+			e.printStackTrace();
+			response.setErrorMessage(e.getMessage());
+		}
+		return response;
 	}
 	
 	
@@ -135,9 +143,10 @@ public class TypeTemplateController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="按条件分页查询模板", notes="按条件分页查询模板")
-	public BaseResponse search(@RequestBody TypeTemplate typeTemplate, int page, int rows  ){
+	public BaseResponse search(@RequestBody TypeTemplateDTO typeTemplateDTO, int page, int rows  ){
 		BaseResponse response = new BaseResponse();
 		try{
+			TypeTemplate typeTemplate = BeanMapper.map(typeTemplateDTO, TypeTemplate.class);
 			typeTemplateService.findPage(typeTemplate, page, rows);
 		}catch (Exception e){
 			e.printStackTrace();

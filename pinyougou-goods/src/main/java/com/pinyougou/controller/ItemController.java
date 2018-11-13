@@ -145,9 +145,10 @@ public class ItemController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="分页查询类目", notes="分页查询类目")
-	public BaseResponse search(@RequestBody Item item, int page, int rows  ){
+	public BaseResponse search(@RequestBody ItemDTO itemDTO, int page, int rows  ){
 		BaseResponse response = new BaseResponse();
 		try{
+			Item item = BeanMapper.map(itemDTO, Item.class);
 			Page<Item> data = (Page<Item>) itemService.findPage(item, page, rows);
 			response.setTotalCount(data.getTotal());
 			response.setData(data.getResult());

@@ -85,7 +85,7 @@ public class ItemCatController {
 	 * @param itemCatDTO
 	 * @return
 	 */
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation(value="修改类目", notes="修改类目")
 	public BaseResponse update(@RequestBody ItemCatDTO itemCatDTO){
 		BaseResponse response = new BaseResponse();
@@ -144,9 +144,10 @@ public class ItemCatController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="分页查询类目", notes="分页查询类目")
-	public BaseResponse search(@RequestBody ItemCat itemCat, int page, int rows  ){
+	public BaseResponse search(@RequestBody ItemCatDTO itemCatDTO, int page, int rows  ){
 		BaseResponse response = new BaseResponse();
 		try {
+			ItemCat itemCat = BeanMapper.map(itemCatDTO, ItemCat.class);
 			Page data = itemCatService.findPage(itemCat, page, rows);
 			response.setData(data.getResult());
 			response.setTotalCount(data.getTotal());

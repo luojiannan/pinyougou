@@ -145,9 +145,10 @@ public class SellerController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="分页查询卖家", notes="分页查询卖家")
-	public BaseResponse search(@RequestBody Seller seller, int page, int rows  ){
+	public BaseResponse search(@RequestBody SellerDTO sellerDTO, int page, int rows  ){
 		BaseResponse response = new BaseResponse();
 		try{
+			Seller seller = BeanMapper.map(sellerDTO, Seller.class);
 			Page<Seller> data = (Page<Seller>) sellerService.findPage(seller, page, rows);
 			response.setTotalCount(data.getTotal());
 			response.setData(data.getResult());

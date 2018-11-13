@@ -145,9 +145,10 @@ public class SpecificationOptionController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="按条件分页查询规格选择", notes="按条件分页查询规格选择")
-	public BaseResponse search(@RequestBody SpecificationOption specificationOption, int page, int rows  ){
+	public BaseResponse search(@RequestBody SpecificationOptionDTO specificationOptionDTO, int page, int rows  ){
 		BaseResponse response = new BaseResponse();
 		try{
+			SpecificationOption specificationOption = BeanMapper.map(specificationOptionDTO, SpecificationOption.class);
 			Page<SpecificationOption> data = (Page<SpecificationOption>) specificationOptionService.findPage(specificationOption, page, rows);
 			response.setTotalCount(data.getTotal());
 			response.setData(data.getResult());

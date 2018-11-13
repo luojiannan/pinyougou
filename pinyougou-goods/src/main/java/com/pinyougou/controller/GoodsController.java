@@ -150,7 +150,7 @@ public class GoodsController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="查询+分页商品", notes="查询+分页商品")
-	public BaseResponse search(@RequestBody Goods goods, int page, int rows  ){
+	public BaseResponse search(@RequestBody GoodsDTO goods, int page, int rows  ){
 		BaseResponse response = new BaseResponse();
 		try{
 			PageHelper.startPage(page,rows);

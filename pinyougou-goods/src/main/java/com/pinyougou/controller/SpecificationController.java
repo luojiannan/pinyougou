@@ -86,7 +86,7 @@ public class SpecificationController {
 	 * @param specificationDTO
 	 * @return
 	 */
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation(value="修改规格", notes="修改规格")
 	public BaseResponse update(@RequestBody SpecificationDTO specificationDTO){
 		BaseResponse response = new BaseResponse();
@@ -145,9 +145,10 @@ public class SpecificationController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="按条件分页查询规格", notes="按条件分页查询规格")
-	public BaseResponse search(@RequestBody Specification specification, int page, int rows  ){
+	public BaseResponse search(@RequestBody SpecificationDTO specificationDTO, int page, int rows  ){
 		BaseResponse response = new BaseResponse();
 		try{
+			Specification specification = BeanMapper.map(specificationDTO, Specification.class);
 			Page<Specification> data = (Page<Specification>) specificationService.findPage(specification, page, rows);
 			response.setTotalCount(data.getTotal());
 			response.setData(data.getResult());

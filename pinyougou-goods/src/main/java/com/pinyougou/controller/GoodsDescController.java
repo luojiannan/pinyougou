@@ -143,9 +143,10 @@ public class GoodsDescController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="分页查询商品描述", notes="分页查询商品描述")
-	public BaseResponse search(@RequestBody GoodsDesc goodsDesc, int page, int rows  ){
+	public BaseResponse search(@RequestBody GoodsDescDTO goodsDescDTO, int page, int rows  ){
 		BaseResponse response = new BaseResponse();
 		try{
+			GoodsDesc goodsDesc = BeanMapper.map(goodsDescDTO, GoodsDesc.class);
 			Page data = goodsDescService.findPage(goodsDesc, page, rows);
 			response.setTotalCount(data.getTotal());
 			response.setResult(data.getResult());
