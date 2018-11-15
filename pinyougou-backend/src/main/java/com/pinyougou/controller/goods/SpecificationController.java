@@ -42,13 +42,13 @@ public class SpecificationController {
 	
 	/**
 	 * 增加
-	 * @param specificationDTO
+	 * @param specification
 	 * @return
 	 */
 	@PostMapping("/add")
 	@ApiOperation(value="增加规格", notes="增加规格")
-	public BaseResponse add(@RequestBody SpecificationDTO specificationDTO){
-		return specificationFeign.add(specificationDTO);
+	public BaseResponse add(@RequestBody SpecificationDTO specification){
+		return specificationFeign.add(specification);
 	}
 	
 	/**

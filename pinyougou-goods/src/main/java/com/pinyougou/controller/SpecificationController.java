@@ -72,8 +72,7 @@ public class SpecificationController {
 	public BaseResponse add(@RequestBody SpecificationDTO specificationDTO){
 		BaseResponse response = new BaseResponse();
 		try{
-			Specification specification = BeanMapper.map(specificationDTO, Specification.class);
-			specificationService.add(specification);
+			specificationService.add(specificationDTO);
 		}catch (Exception e){
 			e.printStackTrace();
 			response.setErrorMessage(e.getMessage());

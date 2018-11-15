@@ -8,6 +8,7 @@ import com.pinyougou.service.ISpecificationOptionService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -44,8 +45,9 @@ public class SpecificationOptionServiceImpl implements ISpecificationOptionServi
 	 * 增加
 	 */
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void add(SpecificationOption specificationOption) {
-		specificationOptionMapper.insert(specificationOption);		
+		specificationOptionMapper.insert(specificationOption);
 	}
 
 	
@@ -53,6 +55,7 @@ public class SpecificationOptionServiceImpl implements ISpecificationOptionServi
 	 * 修改
 	 */
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void update(SpecificationOption specificationOption){
 		specificationOptionMapper.updateByPrimaryKey(specificationOption);
 	}	
@@ -71,6 +74,7 @@ public class SpecificationOptionServiceImpl implements ISpecificationOptionServi
 	 * 批量删除
 	 */
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void delete(Long[] ids) {
 		for(Long id:ids){
 			specificationOptionMapper.deleteByPrimaryKey(id);
@@ -90,5 +94,10 @@ public class SpecificationOptionServiceImpl implements ISpecificationOptionServi
 		}
 		return (Page<SpecificationOption>)specificationOptionMapper.selectByExample(example);
 	}
-	
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void batchInsert(List<SpecificationOption> list) {
+		specificationOptionMapper.insertList(list);
+	}
 }

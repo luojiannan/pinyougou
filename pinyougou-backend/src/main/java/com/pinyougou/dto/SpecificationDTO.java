@@ -1,5 +1,7 @@
 package com.pinyougou.dto;
 
+import java.util.List;
+
 /**
  * @author ljn
  * 规格
@@ -21,6 +23,19 @@ public class SpecificationDTO {
      */
     public Long getId() {
         return id;
+    }
+
+    /**
+     * 规格选项
+     */
+    private List<SpecificationOptionDTO> specificationOptions;
+
+    public List<SpecificationOptionDTO> getSpecificationOptions() {
+        return specificationOptions;
+    }
+
+    public void setSpecificationOptions(List<SpecificationOptionDTO> specificationOptions) {
+        this.specificationOptions = specificationOptions;
     }
 
     /**

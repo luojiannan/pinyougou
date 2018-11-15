@@ -3,12 +3,21 @@ package com.pinyougou.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.pinyougou.dao.entity.Specification;
+import com.pinyougou.dao.entity.SpecificationOption;
 import com.pinyougou.dao.mapper.SpecificationMapper;
+import com.pinyougou.dto.SpecificationDTO;
+import com.pinyougou.dto.SpecificationOptionDTO;
+import com.pinyougou.service.ISpecificationOptionService;
 import com.pinyougou.service.ISpecificationService;
+import com.pinyougou.utils.BeanMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +30,9 @@ public class SpecificationServiceImpl implements ISpecificationService {
 
 	@Autowired
 	private SpecificationMapper specificationMapper;
+
+	@Autowired
+	private ISpecificationOptionService specificationOptionService;
 	
 	/**
 	 * 查询全部
@@ -43,8 +55,21 @@ public class SpecificationServiceImpl implements ISpecificationService {
 	 * 增加
 	 */
 	@Override
-	public void add(Specification specification) {
-		specificationMapper.insert(specification);		
+	@Transactional(rollbackFor = Exception.class)
+	public void add(SpecificationDTO specificationDTO) {
+		Specification specification = BeanMapper.map(specificationDTO, Specification.class);
+		specificationMapper.insert(specification);
+		Long id = specification.getId();
+		List<SpecificationOptionDTO> specificationOptions = specificationDTO.getSpecificationOptions();
+		if (CollectionUtils.isEmpty(specificationOptions)) {
+			return;
+		}
+		List<SpecificationOption> options = new ArrayList<>();
+		BeanUtils.copyProperties(specificationOptions,options);
+		for (SpecificationOption option : options) {
+			option.setSpecId(id);
+		}
+		specificationOptionService.batchInsert(options);
 	}
 
 	

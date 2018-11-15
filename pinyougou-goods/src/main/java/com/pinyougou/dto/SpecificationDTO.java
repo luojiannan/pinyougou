@@ -1,5 +1,7 @@
 package com.pinyougou.dto;
 
+import java.util.List;
+
 /**
  * @author ljn
  * 规格
@@ -13,6 +15,19 @@ public class SpecificationDTO {
      * 名称
      */
     private String specName;
+
+    /**
+     * 规格选项
+     */
+    private List<SpecificationOptionDTO> specificationOptions;
+
+    public List<SpecificationOptionDTO> getSpecificationOptions() {
+        return specificationOptions;
+    }
+
+    public void setSpecificationOptions(List<SpecificationOptionDTO> specificationOptions) {
+        this.specificationOptions = specificationOptions;
+    }
 
     /**
      * 获取主键

@@ -58,5 +58,11 @@ public interface ISpecificationOptionService {
 	 * @return
 	 */
 	Page findPage(SpecificationOption specificationOption, int pageNum, int pageSize);
+
+	/**
+	 * 批量插入
+	 * @param list
+     */
+	void batchInsert(List<SpecificationOption> list);
 	
 }

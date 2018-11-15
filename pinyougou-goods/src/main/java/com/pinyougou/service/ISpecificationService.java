@@ -2,6 +2,7 @@ package com.pinyougou.service;
 
 import com.github.pagehelper.Page;
 import com.pinyougou.dao.entity.Specification;
+import com.pinyougou.dto.SpecificationDTO;
 
 import java.util.List;
 /**
@@ -28,7 +29,7 @@ public interface ISpecificationService {
 	/**
 	 * 增加
 	*/
-	void add(Specification specification);
+	void add(SpecificationDTO specificationDTO);
 	
 	
 	/**
