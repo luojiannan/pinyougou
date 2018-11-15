@@ -68,13 +68,18 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索
-	$scope.search=function(page,rows){			
+	$scope.search=function(page,rows){
 		specificationService.search(page,rows,$scope.searchEntity).success(
 			function(response){
 				$scope.list=response.data;
 				$scope.paginationConf.totalItems=response.totalCount;//更新总记录数
 			}			
 		);
+	}
+
+	$scope.entity = {specificationOptionList:[]};
+	$scope.addTableRow = function() {
+		$scope.entity.specificationOptionList.push({})
 	}
     
 });	

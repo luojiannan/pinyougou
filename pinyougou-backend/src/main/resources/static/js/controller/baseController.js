@@ -6,13 +6,13 @@ app.controller('baseController',function($scope){
         itemsPerPage: 15,
         perPageOptions:[10, 20, 30, 40, 50],
         onChange:function(){
-            $scope.reloadList()
+            $scope.reloadList();
         }
     };
     //刷新列表
     $scope.reloadList = function(){
         $scope.search($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage)
-    }
+    };
 
     //复选框
     $scope.selectedIds = [];
