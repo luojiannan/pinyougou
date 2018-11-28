@@ -41,7 +41,7 @@ app.controller('itemController' ,function($scope,$controller   ,itemService){
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.success){
+				if(response.code == "00"){
 					//重新查询 
 		        	$scope.reloadList();//重新加载
 				}else{
@@ -57,7 +57,7 @@ app.controller('itemController' ,function($scope,$controller   ,itemService){
 		//获取选中的复选框			
 		itemService.dele( $scope.selectIds ).success(
 			function(response){
-				if(response.success){
+				if(response.code == "00"){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds=[];
 				}						

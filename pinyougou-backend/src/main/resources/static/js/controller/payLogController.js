@@ -41,7 +41,7 @@ app.controller('payLogController' ,function($scope,$controller   ,payLogService)
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.success){
+				if(response.code == "00"){
 					//重新查询 
 		        	$scope.reloadList();//重新加载
 				}else{
@@ -57,7 +57,7 @@ app.controller('payLogController' ,function($scope,$controller   ,payLogService)
 		//获取选中的复选框			
 		payLogService.dele( $scope.selectIds ).success(
 			function(response){
-				if(response.success){
+				if(response.code == "00"){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds=[];
 				}						
