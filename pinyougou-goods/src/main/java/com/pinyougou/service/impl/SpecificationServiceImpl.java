@@ -60,7 +60,7 @@ public class SpecificationServiceImpl implements ISpecificationService {
 		Specification specification = BeanMapper.map(specificationDTO, Specification.class);
 		specificationMapper.insert(specification);
 		Long id = specification.getId();
-		List<SpecificationOptionDTO> specificationOptions = specificationDTO.getSpecificationOptions();
+		List<SpecificationOptionDTO> specificationOptions = specificationDTO.getSpecificationOptionList();
 		if (CollectionUtils.isEmpty(specificationOptions)) {
 			return;
 		}

@@ -19,14 +19,14 @@ public class SpecificationDTO {
     /**
      * 规格选项
      */
-    private List<SpecificationOptionDTO> specificationOptions;
+    private List<SpecificationOptionDTO> specificationOptionList;
 
-    public List<SpecificationOptionDTO> getSpecificationOptions() {
-        return specificationOptions;
+    public List<SpecificationOptionDTO> getSpecificationOptionList() {
+        return specificationOptionList;
     }
 
-    public void setSpecificationOptions(List<SpecificationOptionDTO> specificationOptions) {
-        this.specificationOptions = specificationOptions;
+    public void setSpecificationOptionList(List<SpecificationOptionDTO> specificationOptionList) {
+        this.specificationOptionList = specificationOptionList;
     }
 
     /**
