@@ -1,8 +1,9 @@
 package com.pinyougou.backend.controller.goods;
 
-import com.pinyougou.common.dto.BaseResponse;
+import com.pinyougou.backend.dto.Specification;
 import com.pinyougou.backend.dto.SpecificationDTO;
 import com.pinyougou.backend.feign.ISpecificationFeign;
+import com.pinyougou.common.dto.BaseResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -94,8 +95,8 @@ public class SpecificationController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="按条件分页查询规格", notes="按条件分页查询规格")
-	public BaseResponse search(@RequestBody SpecificationDTO specificationDTO, Integer page, Integer rows  ){
-		return specificationFeign.search(specificationDTO, page, rows);
+	public BaseResponse search(@RequestBody Specification specification, Integer page, Integer rows  ){
+		return specificationFeign.search(specification, page, rows);
 	}
 	
 }

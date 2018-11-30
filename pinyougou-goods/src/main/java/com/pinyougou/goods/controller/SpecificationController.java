@@ -5,7 +5,6 @@ import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.goods.dao.entity.Specification;
 import com.pinyougou.goods.dto.SpecificationDTO;
 import com.pinyougou.goods.service.ISpecificationService;
-import com.pinyougou.goods.utils.BeanMapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -143,10 +142,9 @@ public class SpecificationController {
 	 */
 	@PostMapping("/search")
 	@ApiOperation(value="按条件分页查询规格", notes="按条件分页查询规格")
-	public BaseResponse search(@RequestBody SpecificationDTO specificationDTO, int page, int rows  ){
+	public BaseResponse search(@RequestBody Specification specification, int page, int rows  ){
 		BaseResponse response = new BaseResponse();
 		try{
-			Specification specification = BeanMapper.map(specificationDTO, Specification.class);
 			Page<Specification> data = (Page<Specification>) specificationService.findPage(specification, page, rows);
 			response.setTotalCount(data.getTotal());
 			response.setData(data.getResult());

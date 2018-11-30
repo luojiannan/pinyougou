@@ -1,7 +1,8 @@
 package com.pinyougou.backend.feign;
 
-import com.pinyougou.common.dto.BaseResponse;
+import com.pinyougou.backend.dto.Specification;
 import com.pinyougou.backend.dto.SpecificationDTO;
+import com.pinyougou.common.dto.BaseResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -81,6 +82,6 @@ public interface ISpecificationFeign {
 	 */
 	@RequestMapping(value = "specification/search", method = RequestMethod.POST)
 	@ApiOperation(value="按条件分页查询规格", notes="按条件分页查询规格")
-	BaseResponse search(@RequestBody SpecificationDTO specification, @RequestParam("page") int page, @RequestParam("rows") int rows);
+	BaseResponse search(@RequestBody Specification specification, @RequestParam("page") int page, @RequestParam("rows") int rows);
 	
 }
