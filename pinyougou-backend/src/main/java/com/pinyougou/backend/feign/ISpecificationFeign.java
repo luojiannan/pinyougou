@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * controller
  * @author Administrator
@@ -69,8 +71,8 @@ public interface ISpecificationFeign {
 	 */
 	@RequestMapping(value = "specification/delete", method = RequestMethod.GET)
 	@ApiOperation(value="批量删除规格", notes="批量删除规格")
-	BaseResponse delete(@RequestParam("ids")Long [] ids);
-	
+	BaseResponse delete(@RequestParam("ids")List<Long> ids);
+
 		/**
 	 * 查询+分页
 	 * @param page

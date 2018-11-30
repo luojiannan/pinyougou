@@ -90,8 +90,7 @@ public class SpecificationController {
 	public BaseResponse update(@RequestBody SpecificationDTO specificationDTO){
 		BaseResponse response = new BaseResponse();
 		try{
-			Specification specification = BeanMapper.map(specificationDTO, Specification.class);
-			specificationService.update(specification);
+			specificationService.update(specificationDTO);
 		}catch (Exception e){
 			e.printStackTrace();
 			response.setErrorMessage(e.getMessage());
@@ -109,8 +108,8 @@ public class SpecificationController {
 	public BaseResponse findOne(Long id){
 		BaseResponse response = new BaseResponse();
 		try{
-			Specification specification = specificationService.findOne(id);
-			response.setResult(specification);
+			SpecificationDTO dto = specificationService.findOne(id);
+			response.setResult(dto);
 		}catch (Exception e){
 			e.printStackTrace();
 			response.setErrorMessage(e.getMessage());
@@ -125,7 +124,7 @@ public class SpecificationController {
 	 */
 	@GetMapping("/delete")
 	@ApiOperation(value="批量删除规格", notes="批量删除规格")
-	public BaseResponse delete(Long [] ids){
+	public BaseResponse delete(@RequestParam("ids") List<Long> ids){
 		BaseResponse response = new BaseResponse();
 		try{
 			specificationService.delete(ids);

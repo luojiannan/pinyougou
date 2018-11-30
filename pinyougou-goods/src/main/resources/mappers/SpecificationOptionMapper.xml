@@ -10,4 +10,11 @@
     <result column="spec_id" jdbcType="BIGINT" property="specId" />
     <result column="orders" jdbcType="INTEGER" property="orders" />
   </resultMap>
+
+  <delete id="batchDeleteBySpecId" parameterType="list" >
+    delete from tb_specification_option where spec_id in
+    <foreach collection="list" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>

@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.pinyougou.goods.dao.entity.Specification;
 import com.pinyougou.goods.dao.entity.SpecificationOption;
 import com.pinyougou.goods.dao.mapper.SpecificationMapper;
+import com.pinyougou.goods.dao.mapper.SpecificationOptionMapper;
 import com.pinyougou.goods.dto.SpecificationDTO;
 import com.pinyougou.goods.dto.SpecificationOptionDTO;
 import com.pinyougou.goods.service.ISpecificationOptionService;
@@ -32,6 +33,9 @@ public class SpecificationServiceImpl implements ISpecificationService {
 
 	@Autowired
 	private ISpecificationOptionService specificationOptionService;
+
+	@Autowired
+	private SpecificationOptionMapper specificationOptionMapper;
 	
 	/**
 	 * 查询全部
@@ -63,14 +67,7 @@ public class SpecificationServiceImpl implements ISpecificationService {
 		if (CollectionUtils.isEmpty(specificationOptions)) {
 			return;
 		}
-		List<SpecificationOption> options = new ArrayList<>();
-		for (SpecificationOptionDTO dto : specificationOptions) {
-			SpecificationOption option = new SpecificationOption();
-			BeanUtils.copyProperties(dto, option);
-			option.setSpecId(id);
-			options.add(option);
-		}
-		specificationOptionService.batchInsert(options);
+		this.addSpecificationOptions(specificationOptions, id);
 	}
 
 	
@@ -78,28 +75,73 @@ public class SpecificationServiceImpl implements ISpecificationService {
 	 * 修改
 	 */
 	@Override
-	public void update(Specification specification){
+	@Transactional(rollbackFor = Exception.class)
+	public void update(SpecificationDTO dto){
+		if (dto == null || dto.getSpecification() == null) {
+			throw new RuntimeException("参数错误");
+		}
+		Specification specification = dto.getSpecification();
+		if (specification.getId() == null) {
+			return ;
+		}
 		specificationMapper.updateByPrimaryKey(specification);
-	}	
-	
+		Example example = new Example(SpecificationOption.class);
+		Example.Criteria criteria = example.createCriteria();
+		criteria.andEqualTo("specId", specification.getId());
+		specificationOptionMapper.deleteByExample(example);
+		List<SpecificationOptionDTO> optionList = dto.getSpecificationOptionList();
+		if (CollectionUtils.isEmpty(optionList)) {
+			return;
+		}
+		this.addSpecificationOptions(optionList, specification.getId());
+
+	}
+
+	private void addSpecificationOptions(List<SpecificationOptionDTO> optionList, Long id) {
+		List<SpecificationOption> options = new ArrayList<>();
+		for (SpecificationOptionDTO optionDTO : optionList) {
+			SpecificationOption option = new SpecificationOption();
+			BeanUtils.copyProperties(optionDTO, option);
+			option.setSpecId(id);
+			options.add(option);
+		}
+		specificationOptionService.batchInsert(options);
+	}
+
 	/**
 	 * 根据ID获取实体
 	 * @param id
 	 * @return
 	 */
 	@Override
-	public Specification findOne(Long id){
-		return specificationMapper.selectByPrimaryKey(id);
+	public SpecificationDTO findOne(Long id){
+		SpecificationDTO dto = new SpecificationDTO();
+		Specification specification = specificationMapper.selectByPrimaryKey(id);
+		dto.setSpecification(specification);
+		Example example=new Example(SpecificationOption.class);
+		Example.Criteria criteria = example.createCriteria();
+		criteria.andEqualTo("specId", id);
+		List<SpecificationOption> options = specificationOptionMapper.selectByExample(example);
+		List<SpecificationOptionDTO> list = new ArrayList<>();
+		if (!CollectionUtils.isEmpty(options)) {
+			for (SpecificationOption option : options) {
+				SpecificationOptionDTO optionDTO = new SpecificationOptionDTO();
+				BeanUtils.copyProperties(option, optionDTO);
+				list.add(optionDTO);
+			}
+		}
+		dto.setSpecificationOptionList(list);
+		return dto;
 	}
 
 	/**
 	 * 批量删除
 	 */
 	@Override
-	public void delete(Long[] ids) {
-		for(Long id:ids){
-			specificationMapper.deleteByPrimaryKey(id);
-		}		
+	@Transactional(rollbackFor = Exception.class)
+	public void delete(List<Long> ids) {
+		specificationMapper.batchDelete(ids);
+		specificationOptionMapper.batchDeleteBySpecId(ids);
 	}
 	
 	

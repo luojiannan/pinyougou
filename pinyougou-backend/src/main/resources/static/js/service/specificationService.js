@@ -22,7 +22,7 @@ app.service('specificationService',function($http){
 		return  $http.post('http://localhost:8080/backend/specification/update',entity );
 	}
 	//删除
-	this.dele=function(ids){
+	this.delete=function(ids){
 		return $http.get('http://localhost:8080/backend/specification/delete?ids='+ids);
 	}
 	//搜索

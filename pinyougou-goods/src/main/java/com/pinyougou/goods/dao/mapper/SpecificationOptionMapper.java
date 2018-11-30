@@ -5,10 +5,14 @@ import org.springframework.stereotype.Component;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.special.InsertListMapper;
 
+import java.util.List;
+
 /**
  * @author ljn
  */
 
 @Component
 public interface SpecificationOptionMapper extends Mapper<SpecificationOption> , InsertListMapper<SpecificationOption> {
+
+    void batchDeleteBySpecId(List<Long>ids);
 }

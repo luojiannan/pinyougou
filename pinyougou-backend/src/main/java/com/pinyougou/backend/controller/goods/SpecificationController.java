@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * controller
  * @author Administrator
@@ -80,7 +82,7 @@ public class SpecificationController {
 	 */
 	@GetMapping("/delete")
 	@ApiOperation(value="批量删除规格", notes="批量删除规格")
-	public BaseResponse delete(Long [] ids){
+	public BaseResponse delete(@RequestParam(value = "ids")List<Long> ids){
 		return specificationFeign.delete(ids);
 	}
 	

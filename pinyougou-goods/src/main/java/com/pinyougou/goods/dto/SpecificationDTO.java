@@ -13,6 +13,11 @@ public class SpecificationDTO {
 
     private Specification specification;
 
+    /**
+     * 规格选项
+     */
+    private List<SpecificationOptionDTO> specificationOptionList;
+
     public Specification getSpecification() {
         return specification;
     }
@@ -20,11 +25,6 @@ public class SpecificationDTO {
     public void setSpecification(Specification specification) {
         this.specification = specification;
     }
-
-    /**
-     * 规格选项
-     */
-    private List<SpecificationOptionDTO> specificationOptionList;
 
     public List<SpecificationOptionDTO> getSpecificationOptionList() {
         return specificationOptionList;

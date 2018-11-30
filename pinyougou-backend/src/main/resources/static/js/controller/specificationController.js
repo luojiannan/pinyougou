@@ -53,14 +53,22 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
-		//获取选中的复选框			
-		specificationService.dele( $scope.selectIds ).success(
+	$scope.batchDelete=function(){
+		var ids = $scope.selectedIds;
+		console.log(ids);
+		if (ids.length == 0) {
+			alert("请选择要删除的规格")
+			return;
+		}
+		//获取选中的复选框
+		specificationService.delete(ids).success(
 			function(response){
 				if(response.code == "00"){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds=[];
-				}						
+				} else {
+					alert(response.message)
+				}
 			}		
 		);				
 	}

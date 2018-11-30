@@ -16,7 +16,7 @@ app.controller('baseController',function($scope){
 
     //复选框
     $scope.selectedIds = [];
-    $scope.updateSeletion = function($event, id) {
+    $scope.updateSelection = function($event, id) {
         if ($event.target.checked) {
             $scope.selectedIds.push(id);
         } else {

@@ -8,4 +8,12 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="spec_name" jdbcType="VARCHAR" property="specName" />
   </resultMap>
+
+  <delete id="batchDelete" parameterType="list" >
+    delete from tb_specification
+    where id in
+      <foreach collection="list" item="id" open="(" separator="," close=")">
+        #{id}
+      </foreach>
+  </delete>
 </mapper>

@@ -35,7 +35,7 @@ public interface ISpecificationService {
 	/**
 	 * 修改
 	 */
-	void update(Specification specification);
+	void update(SpecificationDTO specification);
 	
 
 	/**
@@ -43,14 +43,14 @@ public interface ISpecificationService {
 	 * @param id
 	 * @return
 	 */
-	Specification findOne(Long id);
+	SpecificationDTO findOne(Long id);
 	
 	
 	/**
 	 * 批量删除
 	 * @param ids
 	 */
-	void delete(Long[] ids);
+	void delete(List<Long> ids);
 
 	/**
 	 * 分页
