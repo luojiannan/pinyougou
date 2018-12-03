@@ -15,4 +15,6 @@ import java.util.Map;
 public interface BrandMapper extends Mapper<Brand> {
 
     List<Brand> selectByMap(Map<String,Object> map);
+
+    List<Map> selectOptionList();
 }

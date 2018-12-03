@@ -60,6 +60,11 @@ public class BrandController {
     @ApiOperation(value="根据id查询品牌", notes="根据id查询品牌")
     public BaseResponse findById(@RequestParam("id") long id) {
         return brandFeign.findById(id);
+    }
 
+    @PostMapping("/selectOptionList")
+    @ApiOperation(value="查询品牌列表", notes="查询品牌列表")
+    public BaseResponse selectOptionList() {
+        return brandFeign.selectOptionList();
     }
 }

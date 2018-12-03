@@ -58,5 +58,5 @@ public interface ITypeTemplateService {
 	 * @return
 	 */
 	Page findPage(TypeTemplate typeTemplate, int pageNum, int pageSize);
-	
+
 }

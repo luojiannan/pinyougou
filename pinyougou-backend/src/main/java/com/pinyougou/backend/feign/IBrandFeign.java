@@ -2,6 +2,7 @@ package com.pinyougou.backend.feign;
 
 import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.backend.dto.BrandDTO;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,4 +36,8 @@ public interface IBrandFeign {
     @RequestMapping(value = "brand/findById", method = RequestMethod.GET)
     BaseResponse findById(@RequestParam("id")long id);
 
+
+    @RequestMapping(value = "brand/selectOptionList", method = RequestMethod.GET)
+    @ApiOperation(value="查询品牌列表", notes="查询品牌列表")
+    BaseResponse selectOptionList();
 }

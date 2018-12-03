@@ -102,5 +102,5 @@ public class TypeTemplateServiceImpl implements ITypeTemplateService {
 		}
 		return (Page<TypeTemplate>)typeTemplateMapper.selectByExample(example);
 	}
-	
+
 }

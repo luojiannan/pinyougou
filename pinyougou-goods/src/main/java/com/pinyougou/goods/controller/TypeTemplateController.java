@@ -156,5 +156,5 @@ public class TypeTemplateController {
 		}
 		return response;
 	}
-	
+
 }

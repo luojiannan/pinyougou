@@ -95,5 +95,5 @@ public class TypeTemplateController {
 	public BaseResponse search(@RequestBody TypeTemplateDTO typeTemplateDTO, int page, int rows  ){
 		return typeTemplateFeign.search(typeTemplateDTO, page, rows);
 	}
-	
+
 }

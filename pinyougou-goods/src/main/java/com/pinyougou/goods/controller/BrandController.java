@@ -107,4 +107,18 @@ public class BrandController {
         }
         return response;
     }
+
+    @GetMapping("/selectOptionList")
+    @ApiOperation(value="查询品牌列表", notes="查询品牌列表")
+    public BaseResponse selectOptionList() {
+        BaseResponse response = new BaseResponse();
+        try{
+            List<Map> list = brandService.selectOptionList();
+            response.setData(list);
+        }catch (Exception e) {
+            e.printStackTrace();
+            response.setErrorMessage(e.getMessage());
+        }
+        return response;
+    }
 }

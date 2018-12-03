@@ -65,4 +65,9 @@ public class BrandServiceImpl implements IBrandService {
         }
         return brandMapper.selectByMap(map);
     }
+
+    @Override
+    public List<Map> selectOptionList() {
+        return brandMapper.selectOptionList();
+    }
 }
