@@ -5,6 +5,8 @@ import com.pinyougou.goods.dao.entity.Specification;
 import com.pinyougou.goods.dto.SpecificationDTO;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * 服务层接口
  * @author Administrator
@@ -59,5 +61,7 @@ public interface ISpecificationService {
 	 * @return
 	 */
 	Page findPage(Specification specification, int pageNum, int pageSize);
+
+	List<Map> selectOptionList();
 	
 }

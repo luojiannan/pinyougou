@@ -98,5 +98,11 @@ public class SpecificationController {
 	public BaseResponse search(@RequestBody Specification specification, Integer page, Integer rows  ){
 		return specificationFeign.search(specification, page, rows);
 	}
+
+	@GetMapping("/selectOptionList")
+	@ApiOperation(value="查询规格列表", notes="查询规格列表")
+	public BaseResponse selectOptionList(){
+		return specificationFeign.selectOptionList();
+	}
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * controller
@@ -148,6 +149,20 @@ public class SpecificationController {
 			Page<Specification> data = (Page<Specification>) specificationService.findPage(specification, page, rows);
 			response.setTotalCount(data.getTotal());
 			response.setData(data.getResult());
+		}catch (Exception e){
+			e.printStackTrace();
+			response.setErrorMessage(e.getMessage());
+		}
+		return response;
+	}
+
+	@GetMapping("/selectOptionList")
+	@ApiOperation(value="查询规格列表", notes="查询规格列表")
+	public BaseResponse selectOptionList(){
+		BaseResponse response = new BaseResponse();
+		try{
+			List<Map> list = specificationService.selectOptionList();
+			response.setData(list);
 		}catch (Exception e){
 			e.printStackTrace();
 			response.setErrorMessage(e.getMessage());

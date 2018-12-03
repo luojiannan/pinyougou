@@ -62,7 +62,7 @@ public class BrandController {
         return brandFeign.findById(id);
     }
 
-    @PostMapping("/selectOptionList")
+    @GetMapping("/selectOptionList")
     @ApiOperation(value="查询品牌列表", notes="查询品牌列表")
     public BaseResponse selectOptionList() {
         return brandFeign.selectOptionList();

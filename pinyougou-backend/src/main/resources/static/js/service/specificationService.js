@@ -28,5 +28,9 @@ app.service('specificationService',function($http){
 	//搜索
 	this.search=function(page,rows,searchEntity){
 		return $http.post('http://localhost:8080/backend/specification/search?page='+page+"&rows="+rows, searchEntity);
-	}    	
+	}
+
+	this.selectOptionList=function(){
+		return $http.get('http://localhost:8080/backend/specification/selectOptionList');
+	}
 });

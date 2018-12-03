@@ -24,5 +24,9 @@ app.service("brandService",function($http){
         return $http.get('http://localhost:8080/backend/brand/batchDelete?ids=' + ids);
     }
 
+    this.selectOptionList = function() {
+        return $http.get('http://localhost:8080/backend/brand/selectOptionList')
+    }
+
 
 });

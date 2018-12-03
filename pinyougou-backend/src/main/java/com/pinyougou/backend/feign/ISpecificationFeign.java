@@ -83,5 +83,8 @@ public interface ISpecificationFeign {
 	@RequestMapping(value = "specification/search", method = RequestMethod.POST)
 	@ApiOperation(value="按条件分页查询规格", notes="按条件分页查询规格")
 	BaseResponse search(@RequestBody Specification specification, @RequestParam("page") int page, @RequestParam("rows") int rows);
-	
+
+	@RequestMapping(value = "specification/selectOptionList", method = RequestMethod.GET)
+	@ApiOperation(value="查询规格列表", notes="查询规格列表")
+	BaseResponse selectOptionList();
 }
