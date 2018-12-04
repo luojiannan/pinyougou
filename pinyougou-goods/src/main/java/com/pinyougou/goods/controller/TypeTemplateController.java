@@ -109,7 +109,8 @@ public class TypeTemplateController {
 	public BaseResponse findOne(Long id){
 		BaseResponse response = new BaseResponse();
 		try{
-			typeTemplateService.findOne(id);
+			TypeTemplate template = typeTemplateService.findOne(id);
+			response.setResult(template);
 		}catch (Exception e){
 			e.printStackTrace();
 			response.setErrorMessage(e.getMessage());

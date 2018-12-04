@@ -56,6 +56,7 @@ app.controller('brandController',function($scope,$controller,brandService) {
             function(response) {
                 if (response.code == "00") {
                     $scope.reloadList();
+                    $scope.selectedIds=[];
                 }else {
                     alert(response.message)
                 }

@@ -65,7 +65,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 			function(response){
 				if(response.code == "00"){
 					$scope.reloadList();//刷新列表
-					$scope.selectIds=[];
+					$scope.selectedIds=[];
 				} else {
 					alert(response.message)
 				}

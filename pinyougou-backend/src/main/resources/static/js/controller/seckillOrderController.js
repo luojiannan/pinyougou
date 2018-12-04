@@ -55,11 +55,11 @@ app.controller('seckillOrderController' ,function($scope,$controller   ,seckillO
 	//批量删除 
 	$scope.dele=function(){			
 		//获取选中的复选框			
-		seckillOrderService.dele( $scope.selectIds ).success(
+		seckillOrderService.dele( $scope.selectedIds ).success(
 			function(response){
 				if(response.code == "00"){
 					$scope.reloadList();//刷新列表
-					$scope.selectIds=[];
+					$scope.selectedIds=[];
 				}						
 			}		
 		);				

@@ -84,7 +84,7 @@ public class TypeTemplateController {
 		return typeTemplateFeign.delete(ids);
 	}
 	
-		/**
+	/**
 	 * 查询+分页
 	 * @param page
 	 * @param rows
