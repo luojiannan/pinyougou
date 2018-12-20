@@ -4,6 +4,7 @@ import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.backend.dto.BrandDTO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import java.util.List;
  * @date 2018/11/6.
  */
 @FeignClient("goods-server")
+@Component
 public interface IBrandFeign {
 
     @RequestMapping(value = "brand/getAll", method = RequestMethod.GET)
