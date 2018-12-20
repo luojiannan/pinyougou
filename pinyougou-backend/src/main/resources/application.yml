@@ -10,6 +10,13 @@ spring:
     virtual-host: spring-boot-vhost
   application:
     name: backend-server
+#配置spring security
+#  security:
+#    basic:
+#      enabled: false
+#    user:
+#      name: admin
+#      password: 123456
 
 eureka:
   client:
