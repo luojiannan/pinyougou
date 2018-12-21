@@ -1,9 +1,12 @@
 package com.pinyougou.backend.controller.user;
 
 import com.pinyougou.backend.feign.IUserFeign;
+import com.pinyougou.common.dto.BaseResponse;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,5 +23,17 @@ public class UserController {
     @GetMapping("getUser")
     public String getUser(){
         return userFeign.getUser();
+    }
+
+    @GetMapping("findByName")
+    @ApiOperation(value="根据用户名获取用户", notes="根据用户名获取用户")
+    public BaseResponse findByName(@RequestParam("userName") String userName) {
+        return userFeign.findByName(userName);
+    }
+
+    @GetMapping("login")
+    @ApiOperation(value="登录", notes="登录")
+    public BaseResponse login(String userName, String password) {
+        return userFeign.login(userName, password);
     }
 }

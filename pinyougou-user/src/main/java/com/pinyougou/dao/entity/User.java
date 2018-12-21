@@ -3,10 +3,6 @@ package com.pinyougou.dao.entity;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * @author ljn
- */
-
 @Table(name = "tb_user")
 public class User {
     @Id
