@@ -4,6 +4,7 @@ import com.pinyougou.common.dto.BaseResponse;
 import com.pinyougou.backend.dto.GoodsDescDTO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  *
  */
 @FeignClient("goods-server")
+@Component
 public interface IGoodsDescFeign {
 
 

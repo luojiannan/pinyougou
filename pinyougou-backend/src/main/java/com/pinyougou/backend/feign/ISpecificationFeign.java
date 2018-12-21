@@ -5,6 +5,7 @@ import com.pinyougou.backend.dto.SpecificationDTO;
 import com.pinyougou.common.dto.BaseResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import java.util.List;
  *
  */
 @FeignClient("goods-server")
+@Component
 public interface ISpecificationFeign {
 
 

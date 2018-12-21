@@ -19,7 +19,7 @@ public interface IUserFeign {
     String getUser();
 
     @RequestMapping(value = "user/findByName", method = RequestMethod.GET)
-    BaseResponse findByName(@RequestParam String userName);
+    BaseResponse findByName(@RequestParam("userName") String userName);
 
     @RequestMapping(value = "user/login", method = RequestMethod.GET)
     BaseResponse login(@RequestParam("userName") String userName, @RequestParam("password") String password);
