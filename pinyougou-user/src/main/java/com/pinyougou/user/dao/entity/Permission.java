@@ -1,10 +1,7 @@
-package com.pinyougou.goods.dao.entity;
+package com.pinyougou.user.dao.entity;
 
 import javax.persistence.*;
 
-/**
- * @author
- */
 @Table(name = "tb_permission")
 public class Permission {
     @Id

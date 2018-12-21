@@ -1,23 +1,37 @@
-package com.pinyougou.goods.controller;
+package com.pinyougou.user.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.pinyougou.common.dto.BaseResponse;
-import com.pinyougou.goods.dao.entity.User;
-import com.pinyougou.goods.service.IUserService;
+import com.pinyougou.user.dao.entity.User;
+import com.pinyougou.user.dao.mapper.UserMapper;
+import com.pinyougou.user.service.IUserService;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author ljn
- * @date 2018/12/20.
+ * @date 2018/11/2.
  */
 @RestController
 @RequestMapping("user")
 public class UserController {
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @GetMapping("getUser")
+    public String getUser(){
+        List<User> users = userMapper.selectAll();
+        String json = JSONObject.toJSONString(users);
+        return json;
+    }
 
     @Autowired
     private IUserService userService;

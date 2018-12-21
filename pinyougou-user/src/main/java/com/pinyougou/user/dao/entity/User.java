@@ -1,7 +1,7 @@
-package com.pinyougou.goods.dao.entity;
+package com.pinyougou.user.dao.entity;
 
-import java.util.Date;
 import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "tb_user")
 public class User {

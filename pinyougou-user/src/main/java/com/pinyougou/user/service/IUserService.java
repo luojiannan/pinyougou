@@ -1,6 +1,7 @@
-package com.pinyougou.goods.service;
+package com.pinyougou.user.service;
 
-import com.pinyougou.goods.dao.entity.User;
+
+import com.pinyougou.user.dao.entity.User;
 
 /**
  * @author ljn

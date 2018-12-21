@@ -1,4 +1,4 @@
-package com.pinyougou.dao.entity;
+package com.pinyougou.user.dao.entity;
 
 import javax.persistence.*;
 

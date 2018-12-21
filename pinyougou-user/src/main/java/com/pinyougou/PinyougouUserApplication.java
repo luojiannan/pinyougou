@@ -9,7 +9,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableEurekaClient
-@MapperScan(basePackages = "com.pinyougou.dao.mapper")
+@MapperScan(basePackages = "com.pinyougou.user.dao.mapper")
 public class PinyougouUserApplication {
 
 	public static void main(String[] args) {

@@ -1,8 +1,8 @@
-package com.pinyougou.goods.service.impl;
+package com.pinyougou.user.service.impl;
 
-import com.pinyougou.goods.dao.entity.User;
-import com.pinyougou.goods.dao.mapper.UserMapper;
-import com.pinyougou.goods.service.IUserService;
+import com.pinyougou.user.dao.entity.User;
+import com.pinyougou.user.dao.mapper.UserMapper;
+import com.pinyougou.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -23,7 +23,6 @@ public class UserServiceImpl implements IUserService {
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("username", userName);
-//        example.selectProperties("username", userName);
         return userMapper.selectOneByExample(example);
     }
 
