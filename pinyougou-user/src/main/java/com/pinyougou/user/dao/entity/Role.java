@@ -1,6 +1,7 @@
 package com.pinyougou.user.dao.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "tb_role")
 public class Role {
@@ -18,9 +19,30 @@ public class Role {
     private String roleName;
 
     /**
-     * 权限
+     * 用户(多对一)
      */
-    private String permission;
+    private User user;
+
+    /**
+     * 权限列表
+     */
+    private List<Permission> permissionList;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Permission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<Permission> permissionList) {
+        this.permissionList = permissionList;
+    }
 
     /**
      * 获取主键
@@ -56,23 +78,5 @@ public class Role {
      */
     public void setRoleName(String roleName) {
         this.roleName = roleName;
-    }
-
-    /**
-     * 获取权限
-     *
-     * @return permission - 权限
-     */
-    public String getPermission() {
-        return permission;
-    }
-
-    /**
-     * 设置权限
-     *
-     * @param permission 权限
-     */
-    public void setPermission(String permission) {
-        this.permission = permission;
     }
 }

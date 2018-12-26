@@ -9,16 +9,23 @@ public class Permission {
     private Long id;
 
     /**
-     * 用户id
+     * 权限名称
      */
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "permission_name")
+    private String permissionName;
 
     /**
-     * 角色id
+     * 角色(多对一)
      */
-    @Column(name = "role_id")
-    private Long roleId;
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     /**
      * @return id
@@ -35,38 +42,20 @@ public class Permission {
     }
 
     /**
-     * 获取用户id
+     * 获取权限名称
      *
-     * @return user_id - 用户id
+     * @return permission_name - 权限名称
      */
-    public Long getUserId() {
-        return userId;
+    public String getPermissionName() {
+        return permissionName;
     }
 
     /**
-     * 设置用户id
+     * 设置权限名称
      *
-     * @param userId 用户id
+     * @param permissionName 权限名称
      */
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    /**
-     * 获取角色id
-     *
-     * @return role_id - 角色id
-     */
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    /**
-     * 设置角色id
-     *
-     * @param roleId 角色id
-     */
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setPermissionName(String permissionName) {
+        this.permissionName = permissionName;
     }
 }

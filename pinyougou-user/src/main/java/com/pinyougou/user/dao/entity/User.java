@@ -2,6 +2,7 @@ package com.pinyougou.user.dao.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "tb_user")
 public class User {
@@ -119,6 +120,19 @@ public class User {
      */
     @Column(name = "last_login_time")
     private Date lastLoginTime;
+
+    /**
+     * 角色列表
+     */
+    private List<Role> roleList;
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
 
     /**
      * @return id

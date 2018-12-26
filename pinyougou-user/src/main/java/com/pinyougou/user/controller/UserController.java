@@ -7,6 +7,9 @@ import com.pinyougou.user.dao.mapper.UserMapper;
 import com.pinyougou.user.service.IUserService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,16 +69,32 @@ public class UserController {
             if (StringUtils.isBlank(password)) {
                 throw new RuntimeException("用户密码不能为空");
             }
-            User user = userService.login(userName, password);
-            if (user == null) {
-                throw new RuntimeException("登录失败");
-            }
+            Subject subject = SecurityUtils.getSubject();
+            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
+            subject.login(usernamePasswordToken);
             response.setMessage("登录成功");
         }catch (RuntimeException e) {
             e.printStackTrace();
             response.setErrorMessage(e.getMessage());
         }catch (Exception e) {
             e.printStackTrace();
+        }
+        return response;
+    }
+
+    @GetMapping("logout")
+    @ApiOperation(value="用户退出登录", notes="用户退出登录")
+    public BaseResponse logout() {
+        BaseResponse response = new BaseResponse();
+        try {
+            Subject subject = SecurityUtils.getSubject();
+            subject.logout();
+        }catch (RuntimeException e) {
+            e.printStackTrace();
+            response.setErrorMessage(e.getMessage());
+        }catch (Exception e) {
+            e.printStackTrace();
+            response.setErrorMessage(e.getMessage());
         }
         return response;
     }

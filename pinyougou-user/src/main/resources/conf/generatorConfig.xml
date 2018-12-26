@@ -32,13 +32,13 @@
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
         <!-- 要生成的那些表 -->
 
-        <table tableName="tb_user" domainObjectName="User" >
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
+        <!--<table tableName="tb_user" domainObjectName="User" >-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
 
-        <table tableName="tb_role" domainObjectName="Role">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
+        <!--<table tableName="tb_role" domainObjectName="Role">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
 
         <table tableName="tb_permission" domainObjectName="Permission">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
