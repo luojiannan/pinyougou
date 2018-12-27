@@ -1,14 +1,9 @@
-package com.pinyougou.user.dao.entity;
+package com.pinyougou.backend.dto;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Table(name = "tb_user")
-public class User implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class User {
     private Long id;
 
     /**
@@ -41,13 +36,11 @@ public class User implements Serializable{
     /**
      * 会员来源：1:PC，2：H5，3：Android，4：IOS，5：WeChat
      */
-    @Column(name = "source_type")
     private String sourceType;
 
     /**
      * 昵称
      */
-    @Column(name = "nick_name")
     private String nickName;
 
     /**
@@ -63,7 +56,6 @@ public class User implements Serializable{
     /**
      * 头像地址
      */
-    @Column(name = "head_pic")
     private String headPic;
 
     /**
@@ -74,19 +66,16 @@ public class User implements Serializable{
     /**
      * 账户余额
      */
-    @Column(name = "account_balance")
     private Long accountBalance;
 
     /**
      * 手机是否验证 （0否  1是）
      */
-    @Column(name = "is_mobile_check")
     private String isMobileCheck;
 
     /**
      * 邮箱是否检测（0否  1是）
      */
-    @Column(name = "is_email_check")
     private String isEmailCheck;
 
     /**
@@ -97,7 +86,6 @@ public class User implements Serializable{
     /**
      * 会员等级
      */
-    @Column(name = "user_level")
     private Integer userLevel;
 
     /**
@@ -108,7 +96,6 @@ public class User implements Serializable{
     /**
      * 经验值
      */
-    @Column(name = "experience_value")
     private Integer experienceValue;
 
     /**
@@ -119,7 +106,6 @@ public class User implements Serializable{
     /**
      * 最后登录时间
      */
-    @Column(name = "last_login_time")
     private Date lastLoginTime;
 
     /**

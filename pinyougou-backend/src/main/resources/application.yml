@@ -10,6 +10,18 @@ spring:
     virtual-host: spring-boot-vhost
   application:
     name: backend-server
+
+  # redis配置
+  redis.database : 0
+  redis.host : 120.78.170.24
+  redis.port : 6379
+  redis.password : 103021
+  redis.pool.max-total : 8
+  redis.pool.max-wait : -1
+  redis.pool.max-idle : 8
+  redis.pool.min-idle : 0
+  redis.pool.timeout : 10000
+
 #配置spring security
 #  security:
 #    basic:

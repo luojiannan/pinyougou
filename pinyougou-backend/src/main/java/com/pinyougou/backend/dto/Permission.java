@@ -1,18 +1,11 @@
-package com.pinyougou.user.dao.entity;
+package com.pinyougou.backend.dto;
 
-import javax.persistence.*;
-import java.io.Serializable;
-
-@Table(name = "tb_permission")
-public class Permission implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Permission {
     private Long id;
 
     /**
      * 权限名称
      */
-    @Column(name = "permission_name")
     private String permissionName;
 
     /**

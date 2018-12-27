@@ -1,22 +1,16 @@
-package com.pinyougou.user.dao.entity;
+package com.pinyougou.backend.dto;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
-@Table(name = "tb_role")
-public class Role implements Serializable {
+public class Role {
     /**
      * 主键
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * 角色名
      */
-    @Column(name = "role_name")
     private String roleName;
 
     /**
