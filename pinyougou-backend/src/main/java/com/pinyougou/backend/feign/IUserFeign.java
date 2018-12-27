@@ -1,5 +1,6 @@
 package com.pinyougou.backend.feign;
 
+import com.pinyougou.backend.dto.User;
 import com.pinyougou.common.dto.BaseResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ public interface IUserFeign {
     String getUser();
 
     @RequestMapping(value = "user/findByName", method = RequestMethod.GET)
-    BaseResponse findByName(@RequestParam("userName") String userName);
+    BaseResponse<User> findByName(@RequestParam("userName") String userName);
 
     @RequestMapping(value = "user/login", method = RequestMethod.GET)
     BaseResponse login(@RequestParam("userName") String userName, @RequestParam("password") String password);

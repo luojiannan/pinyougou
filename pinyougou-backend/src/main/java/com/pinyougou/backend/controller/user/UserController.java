@@ -1,5 +1,6 @@
 package com.pinyougou.backend.controller.user;
 
+import com.pinyougou.backend.dto.User;
 import com.pinyougou.backend.feign.IUserFeign;
 import com.pinyougou.common.dto.BaseResponse;
 import io.swagger.annotations.ApiOperation;
@@ -30,7 +31,7 @@ public class UserController {
 
     @GetMapping("findByName")
     @ApiOperation(value="根据用户名获取用户", notes="根据用户名获取用户")
-    public BaseResponse findByName(String userName) {
+    public BaseResponse<User> findByName(String userName) {
         return userFeign.findByName(userName);
     }
 
