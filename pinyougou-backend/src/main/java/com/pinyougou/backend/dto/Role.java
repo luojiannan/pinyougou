@@ -1,8 +1,9 @@
 package com.pinyougou.backend.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Role {
+public class Role implements Serializable {
     /**
      * 主键
      */
