@@ -105,6 +105,18 @@
 			<version>0.0.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>22.0</version>
+		</dependency>
+
 		<!--<dependency>-->
 			<!--<groupId>org.apache.shiro</groupId>-->
 			<!--<artifactId>shiro-spring</artifactId>-->
@@ -163,6 +175,16 @@
 				</dependencies>
 
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
