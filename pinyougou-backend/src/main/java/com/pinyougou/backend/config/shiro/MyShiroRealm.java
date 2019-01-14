@@ -15,6 +15,9 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 /**
  * @author ljn
@@ -29,9 +32,17 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         User userInfo = (User) principalCollection.getPrimaryPrincipal();
-        for (Role role : userInfo.getRoleList()) {
+        List<Role> roleList = userInfo.getRoleList();
+        if (CollectionUtils.isEmpty(roleList)) {
+            return authorizationInfo;
+        }
+        for (Role role : roleList) {
             authorizationInfo.addRole(role.getRoleName());
-            for (Permission p : role.getPermissionList()) {
+            List<Permission> permissionList = role.getPermissionList();
+            if (CollectionUtils.isEmpty(permissionList)) {
+                continue;
+            }
+            for (Permission p : permissionList) {
                 authorizationInfo.addStringPermission(p.getPermissionName());
             }
         }

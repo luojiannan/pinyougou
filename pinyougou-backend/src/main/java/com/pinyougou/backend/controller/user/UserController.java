@@ -29,7 +29,7 @@ public class UserController {
      * RequiresPermissions 权限管理;
      * @return
      */
-    @RequiresPermissions("userInfo:getUser")
+    @RequiresPermissions("user/getUser")
     @GetMapping("getUser")
     public String getUser(){
         return userFeign.getUser();

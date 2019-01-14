@@ -27,5 +27,16 @@
     <result column="experience_value" jdbcType="INTEGER" property="experienceValue" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
     <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+
+    <association property="roleList" select="selectRoleList" column="id"/>
   </resultMap>
+
+  <select id="selectByName" parameterType="string" resultMap="BaseResultMap">
+    SELECT * FROM tb_user where username = #{username}
+  </select>
+
+  <select id="selectRoleList" parameterType="long" resultMap="com.pinyougou.user.dao.mapper.RoleMapper.BaseResultMap">
+    select c.* from tb_user a join tb_user_role b on a.id = b.user_id join tb_role c on b.role_id = c.id;
+  </select>
+
 </mapper>
