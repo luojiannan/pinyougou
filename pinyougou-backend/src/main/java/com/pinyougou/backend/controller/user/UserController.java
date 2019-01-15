@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class UserController {
     }
 
     @GetMapping("findByName")
+    @RequiresRoles("超级管理员")
     @ApiOperation(value="根据用户名获取用户", notes="根据用户名获取用户")
     public BaseResponse<User> findByName(String userName) {
         return userFeign.findByName(userName);

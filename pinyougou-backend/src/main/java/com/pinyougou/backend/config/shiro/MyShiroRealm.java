@@ -6,6 +6,7 @@ import com.pinyougou.backend.dto.Role;
 import com.pinyougou.backend.dto.User;
 import com.pinyougou.backend.feign.IUserFeign;
 import com.pinyougou.common.dto.BaseResponse;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -67,5 +68,13 @@ public class MyShiroRealm extends AuthorizingRealm {
         }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(), getName());
         return authenticationInfo;
+    }
+
+    /**
+     * 清缓存
+     */
+    public void clearCached() {
+        PrincipalCollection principal = (PrincipalCollection)SecurityUtils.getSubject().getPrincipal();
+        super.clearCache(principal);
     }
 }
