@@ -1,5 +1,6 @@
 package com.pinyougou.backend.controller.user;
 
+import com.pinyougou.backend.config.shiro.Constants;
 import com.pinyougou.backend.dto.User;
 import com.pinyougou.backend.feign.IUserFeign;
 import com.pinyougou.common.dto.BaseResponse;
@@ -9,6 +10,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,6 +59,9 @@ public class UserController {
             Subject subject = SecurityUtils.getSubject();
             UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
             subject.login(usernamePasswordToken);
+            Session session = SecurityUtils.getSubject().getSession();
+            User user = (User) session.getAttribute(Constants.SESSION_USER_INFO);
+            response.setResult(user);
             response.setMessage("登录成功");
         }catch (RuntimeException e) {
             e.printStackTrace();

@@ -67,6 +67,10 @@ public class MyShiroRealm extends AuthorizingRealm {
             return null;
         }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(), getName());
+        //session中不需要保存密码
+        userInfo.setPassword("");
+        //将用户信息放入session中
+        SecurityUtils.getSubject().getSession().setAttribute(Constants.SESSION_USER_INFO, userInfo);
         return authenticationInfo;
     }
 

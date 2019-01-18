@@ -3,7 +3,6 @@ package com.pinyougou.backend.config.shiro;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
-import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -118,7 +117,7 @@ public class ShiroConfig {
     @Bean
     public SessionManager sessionManager() {
         MySessionManager mySessionManager = new MySessionManager();
-        mySessionManager.setSessionDAO(new EnterpriseCacheSessionDAO());
+        mySessionManager.setSessionDAO(redisSessionDAO());
         return mySessionManager;
     }
 
@@ -138,6 +137,9 @@ public class ShiroConfig {
         redisManager.setTimeout(timeout);
         redisManager.setPassword(password);
         return redisManager;
+    }
+
+    public void clearCache() {
     }
 
     /**
