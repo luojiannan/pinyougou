@@ -1,5 +1,6 @@
 package com.pinyougou.backend.config.shiro;
 
+import com.pinyougou.backend.redis.RedisCache;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -9,6 +10,7 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +33,9 @@ public class ShiroConfig {
     private int timeout;
     @Value("${spring.redis.password}")
     private String password;
+
+    @Autowired
+    private RedisCache redisCache;
 
     /**
      * Filter工厂，设置对应的过滤条件和跳转条件
@@ -151,6 +156,7 @@ public class ShiroConfig {
     @Bean
     public RedisCacheManager cacheManager() {
         RedisCacheManager redisCacheManager = new RedisCacheManager();
+//        redisCacheManager.setRedisManager(redisCache);
         redisCacheManager.setRedisManager(redisManager());
         return redisCacheManager;
     }
@@ -162,6 +168,7 @@ public class ShiroConfig {
     @Bean
     public RedisSessionDAO redisSessionDAO() {
         RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
+//        redisSessionDAO.setRedisManager(redisCache);
         redisSessionDAO.setRedisManager(redisManager());
         return redisSessionDAO;
     }
