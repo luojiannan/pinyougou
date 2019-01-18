@@ -139,8 +139,7 @@ public class ShiroConfig {
         return redisManager;
     }
 
-    public void clearCache() {
-    }
+
 
     /**
      * cacheManager 缓存 redis实现

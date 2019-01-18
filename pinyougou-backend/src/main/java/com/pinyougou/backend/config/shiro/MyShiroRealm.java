@@ -74,11 +74,48 @@ public class MyShiroRealm extends AuthorizingRealm {
         return authenticationInfo;
     }
 
+    @Override
+    protected void doClearCache(PrincipalCollection principals) {
+        super.doClearCache(principals);
+    }
+
     /**
-     * 清缓存
+     * 清除当前用户的授权缓存
+     * @param principals
      */
-    public void clearCached() {
-        PrincipalCollection principal = (PrincipalCollection)SecurityUtils.getSubject().getPrincipal();
-        super.clearCache(principal);
+    @Override
+    protected void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthorizationInfo(principals);
+    }
+
+    /**
+     * 清除当前用的认证缓存
+     * @param principals
+     */
+    @Override
+    protected void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthenticationInfo(principals);
+    }
+
+    /**
+     * 自定义方法：清除所有 授权缓存
+     */
+    public void clearAllCachedAuthorizationInfo() {
+        getAuthorizationCache().clear();
+    }
+
+    /**
+     * 自定义方法：清除所有 认证缓存
+     */
+    public void clearAllCachedAuthenticationInfo() {
+        getAuthenticationCache().clear();
+    }
+
+    /**
+     * 自定义方法：清除所有的  认证缓存  和 授权缓存
+     */
+    public void clearAllCache() {
+        clearAllCachedAuthenticationInfo();
+        clearAllCachedAuthorizationInfo();
     }
 }
