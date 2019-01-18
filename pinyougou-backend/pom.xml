@@ -98,6 +98,12 @@
 			<version>2.4.2.1-RELEASE</version>
 		</dependency>
 
+		<!--redis-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
 	</dependencies>
 
 

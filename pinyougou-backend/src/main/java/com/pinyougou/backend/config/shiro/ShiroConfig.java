@@ -2,6 +2,8 @@ package com.pinyougou.backend.config.shiro;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -103,7 +105,7 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(myShiroRealm());
         // 自定义session管理 使用redis
-//        securityManager.setSessionManager(sessionManager());
+        securityManager.setSessionManager(sessionManager());
         // 自定义缓存实现 使用redis
         securityManager.setCacheManager(cacheManager());
         return securityManager;
@@ -113,12 +115,12 @@ public class ShiroConfig {
      * 自定义sessionManager
      * @return
      */
-//    @Bean
-//    public SessionManager sessionManager() {
-//        MySessionManager mySessionManager = new MySessionManager();
-//        mySessionManager.setSessionDAO(redisSessionDAO());
-//        return mySessionManager;
-//    }
+    @Bean
+    public SessionManager sessionManager() {
+        MySessionManager mySessionManager = new MySessionManager();
+        mySessionManager.setSessionDAO(new EnterpriseCacheSessionDAO());
+        return mySessionManager;
+    }
 
     /**
      * 配置shiro redisManager
@@ -131,7 +133,8 @@ public class ShiroConfig {
         RedisManager redisManager = new RedisManager();
         redisManager.setHost(host);
         redisManager.setPort(port);
-        redisManager.setExpire(1800);// 配置缓存过期时间
+        // 配置缓存过期时间
+        redisManager.setExpire(1800);
         redisManager.setTimeout(timeout);
         redisManager.setPassword(password);
         return redisManager;
@@ -163,7 +166,7 @@ public class ShiroConfig {
     }
 
     /**
-     * 开启shiro aop注解支持.
+     * 开启shiro的注解(如@RequiresRoles,@RequiresPermissions)需要 aop注解支持.
      * 使用代理方式;所以需要开启代码支持;
      *
      * @param securityManager
@@ -183,5 +186,15 @@ public class ShiroConfig {
 //    @Bean(name = "exceptionHandler")
 //    public HandlerExceptionResolver handlerExceptionResolver() {
 //        return new MyExceptionHandler();
+//    }
+
+    /**
+     * 配置Shiro生命周期处理器
+     * 配置这个后，获取不到redis的host等配置
+     * @return
+     */
+//    @Bean(name = "lifecycleBeanPostProcessor")
+//    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+//        return new LifecycleBeanPostProcessor();
 //    }
 }
