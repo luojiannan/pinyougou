@@ -53,13 +53,14 @@ public class ShiroConfig {
         map.put("/logout", "logout");
         // 配置不会被拦截的链接 顺序判断
         map.put("/static/**", "anon");
+        map.put("/css/**", "anon");
         map.put("/ajaxLogin", "anon");
         map.put("/swagger-ui.html", "anon");
         map.put("/swagger-resources/**", "anon");
         map.put("/swagger/**", "anon");
         map.put("/v2/api-docs", "anon");
         map.put("/webjars/springfox-swagger-ui/**", "anon");
-        map.put("/login", "anon");
+        map.put("/login.html", "anon");
         //对所有用户认证
         map.put("/**", "authc");
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
