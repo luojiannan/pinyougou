@@ -1,6 +1,6 @@
 package com.pinyougou;
 
-import com.pinyougou.backend.redis.RedisCache;
+import com.pinyougou.backend.config.shiro.RedisCache;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

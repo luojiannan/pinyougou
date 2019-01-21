@@ -2,6 +2,7 @@ package com.pinyougou.user.service.impl;
 
 import com.pinyougou.user.dao.entity.User;
 import com.pinyougou.user.dao.mapper.UserMapper;
+import com.pinyougou.user.redis.UserRedis;
 import com.pinyougou.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,18 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserRedis userRedis;
+
 
     @Override
     public User findByName(String userName) {
-        return userMapper.selectByName(userName);
+        User user = userRedis.get(userName);
+        if (user == null) {
+            user = userMapper.selectByName(userName);
+            userRedis.add(user);
+        }
+        return user;
     }
 
     @Override

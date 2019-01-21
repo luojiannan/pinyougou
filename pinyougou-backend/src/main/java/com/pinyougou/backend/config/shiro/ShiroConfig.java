@@ -1,6 +1,5 @@
 package com.pinyougou.backend.config.shiro;
 
-import com.pinyougou.backend.redis.RedisCache;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;

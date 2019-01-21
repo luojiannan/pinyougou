@@ -1,21 +1,27 @@
-package com.pinyougou.backend.redis;
+package com.pinyougou.backend.config.shiro;
 
 import org.crazycake.shiro.RedisManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Component;
 
 /**
  * @author ljn
  * @date 2019/1/18.
  */
-@Component
+@Configuration
 public class RedisCache extends RedisManager{
 
+    /**
+     * 二进制存储
+     */
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * 字符串存储
+     */
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
