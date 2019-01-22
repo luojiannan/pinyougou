@@ -47,17 +47,17 @@ public class UserController {
 
     @GetMapping("login")
     @ApiOperation(value="登录", notes="登录")
-    public BaseResponse login(String userName, String password) {
+    public BaseResponse login(String username, String password) {
         BaseResponse response = new BaseResponse();
         try {
-            if (StringUtils.isBlank(userName)) {
+            if (StringUtils.isBlank(username)) {
                 throw new RuntimeException("用户名称不能为空");
             }
             if (StringUtils.isBlank(password)) {
                 throw new RuntimeException("用户密码不能为空");
             }
             Subject subject = SecurityUtils.getSubject();
-            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
+            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
             subject.login(usernamePasswordToken);
             Session session = SecurityUtils.getSubject().getSession();
             User user = (User) session.getAttribute(Constants.SESSION_USER_INFO);
