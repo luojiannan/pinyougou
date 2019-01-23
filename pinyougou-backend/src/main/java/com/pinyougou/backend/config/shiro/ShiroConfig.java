@@ -73,6 +73,7 @@ public class ShiroConfig {
         map.put("/webjars/springfox-swagger-ui/**", "anon");
         map.put("/login.html", "anon");
         map.put("/backend/user/login", "anon");
+        map.put("/backend/seller/add", "anon");
         //对所有用户认证
         map.put("/**", "authc");
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
