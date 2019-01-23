@@ -64,13 +64,13 @@ public class SellerController {
 	
 	/**
 	 * 获取实体
-	 * @param id
+	 * @param sellerId
 	 * @return
 	 */
 	@RequestMapping("/findOne")
-	@ApiOperation(value="根据id查询卖家", notes="根据id查询卖家")
-	public BaseResponse findOne(Long id){
-		return sellerFeign.findOne(id);
+	@ApiOperation(value="根据sellerId查询卖家", notes="根据sellerId查询卖家")
+	public BaseResponse findOne(String sellerId){
+		return sellerFeign.findOne(sellerId);
 	}
 	
 	/**

@@ -11,7 +11,7 @@ app.service('sellerService',function($http){
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('http://localhost:8080/backend/seller/findOne?id='+id);
+		return $http.get('http://localhost:8080/backend/seller/findOne?sellerId='+id);
 	}
 	//增加 
 	this.add=function(entity){

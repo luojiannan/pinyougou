@@ -56,12 +56,12 @@ public interface ISellerFeign {
 	
 	/**
 	 * 获取实体
-	 * @param id
+	 * @param sellerId
 	 * @return
 	 */
 	@RequestMapping(value = "seller/findOne", method = RequestMethod.GET)
-	@ApiOperation(value="根据id查询卖家", notes="根据id查询卖家")
-	BaseResponse findOne(@RequestParam("id")Long id);
+	@ApiOperation(value="根据sellerId查询卖家", notes="根据sellerId查询卖家")
+	BaseResponse findOne(@RequestParam("sellerId")String sellerId);
 	
 	/**
 	 * 批量删除

@@ -89,4 +89,19 @@ public class UserController {
         }
         return response;
     }
+
+    @GetMapping("name")
+    @ApiOperation(value="获取用户名", notes="获取用户名")
+    public BaseResponse name() {
+        BaseResponse response = new BaseResponse();
+        Subject subject = SecurityUtils.getSubject();
+        Object principal = subject.getPrincipal();
+        String username = null;
+        if (principal != null) {
+            User user = (User) principal;
+            username = user.getUsername();
+        }
+        response.setResult(username);
+        return response;
+    }
 }

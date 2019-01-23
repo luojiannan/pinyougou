@@ -39,10 +39,10 @@ public interface ISellerService {
 
 	/**
 	 * 根据ID获取实体
-	 * @param id
+	 * @param sellerId
 	 * @return
 	 */
-	public Seller findOne(Long id);
+	public Seller findOne(String sellerId);
 	
 	
 	/**
