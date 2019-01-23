@@ -81,5 +81,15 @@ public interface ISellerFeign {
 	@RequestMapping(value = "seller/search", method = RequestMethod.POST)
 	@ApiOperation(value="分页查询卖家", notes="分页查询卖家")
 	BaseResponse search(@RequestBody SellerDTO seller, @RequestParam("page") int page, @RequestParam("rows") int rows);
+
+	/**
+	 * 查询+分页
+	 * @param sellerId
+	 * @param status
+	 * @returnupdateStatus
+	 */
+	@RequestMapping(value = "seller/updateStatus", method = RequestMethod.POST)
+	@ApiOperation(value="修改商家审核状态", notes="修改商家审核状态")
+	BaseResponse updateStatus(@RequestParam("sellerId")String sellerId, @RequestParam("status")String status);
 	
 }

@@ -153,5 +153,9 @@ public class SellerServiceImpl implements ISellerService {
 		}
 		return (Page<Seller>)sellerMapper.selectByExample(example);
 	}
-	
+
+	@Override
+	public void updateStatus(String sellerId, String status) {
+		sellerMapper.updateStatus(sellerId, status);
+	}
 }

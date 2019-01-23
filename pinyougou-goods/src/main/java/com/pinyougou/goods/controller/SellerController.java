@@ -158,5 +158,18 @@ public class SellerController {
 		}
 		return response;
 	}
+
+	@PostMapping("/updateStatus")
+	@ApiOperation(value="修改商家审核状态", notes="修改商家审核状态")
+	public BaseResponse updateStatus(String sellerId, String status) {
+		BaseResponse response = new BaseResponse();
+		try{
+			sellerService.updateStatus(sellerId, status);
+		}catch (Exception e) {
+			e.printStackTrace();
+			response.setErrorMessage(e.getMessage());
+		}
+		return response;
+	}
 	
 }

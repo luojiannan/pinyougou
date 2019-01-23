@@ -28,5 +28,9 @@ app.service('sellerService',function($http){
 	//搜索
 	this.search=function(page,rows,searchEntity){
 		return $http.post('http://localhost:8080/backend/seller/search?page='+page+"&rows="+rows, searchEntity);
-	}    	
+	}
+	//修改状态
+	this.updateStatus=function(sellerId,status){
+		return $http.post('http://localhost:8080/backend/seller/updateStatus?sellerId='+sellerId+"&status="+status);
+	}
 });

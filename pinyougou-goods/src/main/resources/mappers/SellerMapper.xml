@@ -30,4 +30,8 @@
     <result column="bank_user" property="bankUser" jdbcType="VARCHAR" />
     <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
   </resultMap>
+
+  <update id="updateStatus" parameterType="string">
+    update tb_seller set status = #{status} where seller_id = #{sellerId}
+  </update>
 </mapper>

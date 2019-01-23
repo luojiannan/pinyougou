@@ -41,6 +41,6 @@ eureka:
     prefer-ip-address : true
     instance-id: ${spring.application.name}
 
-ribbon.ReadTimeout: 6000
+ribbon.ReadTimeout: 60000
 # 设置连接超时时间
-ribbon.ConnectTimeout: 600
+ribbon.ConnectTimeout: 60000

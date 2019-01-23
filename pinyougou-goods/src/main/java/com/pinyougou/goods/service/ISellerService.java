@@ -58,5 +58,12 @@ public interface ISellerService {
 	 * @return
 	 */
 	public Page findPage(Seller seller, int pageNum, int pageSize);
+
+	/**
+	 * 修改商家审核状态
+	 * @param sellerId
+	 * @param status
+     */
+	public void updateStatus(String sellerId, String status);
 	
 }

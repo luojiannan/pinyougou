@@ -84,7 +84,7 @@ public class SellerController {
 		return sellerFeign.delete(ids);
 	}
 	
-		/**
+	/**
 	 * 查询+分页
 	 * @param page
 	 * @param rows
@@ -94,6 +94,18 @@ public class SellerController {
 	@ApiOperation(value="分页查询卖家", notes="分页查询卖家")
 	public BaseResponse search(@RequestBody SellerDTO sellerDTO, int page, int rows  ){
 		return sellerFeign.search(sellerDTO, page, rows);
+	}
+
+	/**
+	 * 修改商家审核状态
+	 * @param sellerId
+	 * @param status
+	 * @return
+	 */
+	@PostMapping("/updateStatus")
+	@ApiOperation(value="修改商家审核状态", notes="修改商家审核状态")
+	public BaseResponse updateStatus(String sellerId, String status){
+		return sellerFeign.updateStatus(sellerId, status);
 	}
 	
 }
