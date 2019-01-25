@@ -5,11 +5,15 @@ import com.github.pagehelper.PageHelper;
 import com.pinyougou.goods.dao.entity.ItemCat;
 import com.pinyougou.goods.dao.mapper.ItemCatMapper;
 import com.pinyougou.goods.service.IItemCatService;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -71,10 +75,23 @@ public class ItemCatServiceImpl implements IItemCatService {
 	 * 批量删除
 	 */
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void delete(Long[] ids) {
+		if (ArrayUtils.isEmpty(ids)) {
+			throw new RuntimeException("请选中要删除的商品分类");
+		}
 		for(Long id:ids){
-			itemCatMapper.deleteByPrimaryKey(id);
-		}		
+			ItemCat itemCat = itemCatMapper.selectByPrimaryKey(id);
+			if (itemCat == null) {
+				throw new RuntimeException("不存在此id");
+			}
+			List<ItemCat> list = this.findByParentId(id);
+			if (!CollectionUtils.isEmpty(list)) {
+				throw new RuntimeException(itemCat.getName() + ":商品分类存在子级商品分类，请先删除子级分类");
+			}
+		}
+		List<Long> list = Arrays.asList(ids);
+		itemCatMapper.batchDelete(list);
 	}
 	
 	

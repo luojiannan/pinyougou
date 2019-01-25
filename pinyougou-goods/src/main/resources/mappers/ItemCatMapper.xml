@@ -10,4 +10,15 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="type_id" property="typeId" jdbcType="BIGINT" />
   </resultMap>
+
+  <delete id="batchDelete" parameterType="java.util.List">
+    delete from tb_item_cat where id in
+    <foreach collection="list" item="item" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+    <!--<foreach collection="list" item="item"  separator=";">-->
+      <!--delete from tb_item_cat where id = #{item}-->
+    <!--</foreach>-->
+  </delete>
+
 </mapper>

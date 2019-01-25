@@ -37,13 +37,14 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 		if($scope.entity.id!=null){//如果有ID
 			serviceObject=itemCatService.update( $scope.entity ); //修改  
 		}else{
+			$scope.entity.parentId = $scope.parentId;
 			serviceObject=itemCatService.add( $scope.entity  );//增加 
 		}				
 		serviceObject.success(
 			function(response){
 				if(response.code == "00"){
 					//重新查询 
-		        	$scope.reloadList();//重新加载
+		        	$scope.findByParentId($scope.parentId);//重新加载
 				}else{
 					alert(response.message);
 				}
@@ -54,13 +55,20 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	 
 	//批量删除 
 	$scope.dele=function(){			
-		//获取选中的复选框			
+		//获取选中的复选框
+		var ids = $scope.selectedIds;
+		if (ids.length == 0) {
+			alert("请选择要删除的商品类型")
+			return;
+		}
 		itemCatService.dele( $scope.selectedIds ).success(
 			function(response){
 				if(response.code == "00"){
 					$scope.reloadList();//刷新列表
 					$scope.selectedIds=[];
-				}						
+				}else {
+					alert(response.message)
+				}
 			}		
 		);				
 	}
@@ -75,6 +83,40 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 				$scope.paginationConf.totalItems=response.totalCount;//更新总记录数
 			}			
 		);
+	}
+
+	$scope.parentId = 0;
+
+	//根据上级分类id查询商品分类列表
+	$scope.findByParentId=function(parentId) {
+		$scope.parentId = parentId;
+		itemCatService.findByParentId(parentId).success(
+			function (response) {
+				$scope.list = response.data;
+			}
+		)
+	}
+
+	$scope.grade=1;//当前 级别
+
+	$scope.setGrade=function(value) {
+		$scope.grade=value;
+	}
+
+	$scope.selectList = function(p_entity){
+		if ($scope.grade == 1) {
+			$scope.entity_1 = null;
+			$scope.entity_2 = null;
+		}
+		if ($scope.grade == 2) {
+			$scope.entity_1 = p_entity;
+			$scope.entity_2 = null;
+		}
+		if ($scope.grade == 3) {
+			$scope.entity_2 = p_entity;
+		}
+		$scope.findByParentId(p_entity.id);
+
 	}
     
 });	

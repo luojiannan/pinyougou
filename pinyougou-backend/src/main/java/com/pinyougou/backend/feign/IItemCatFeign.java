@@ -38,7 +38,6 @@ public interface IItemCatFeign {
 	 * @param itemCatDTO
 	 * @return
 	 */
-	@PostMapping("/add")
 	@RequestMapping(value = "itemCat/add", method = RequestMethod.POST)
 	@ApiOperation(value="增加类目", notes="增加类目")
 	BaseResponse add(@RequestBody ItemCatDTO itemCatDTO);
