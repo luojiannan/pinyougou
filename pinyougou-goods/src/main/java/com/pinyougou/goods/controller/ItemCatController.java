@@ -157,5 +157,21 @@ public class ItemCatController {
 		}
 		return response;
 	}
+
+	@GetMapping("/findByParentId")
+	@ApiOperation(value="根据上级id查询商品分类列表", notes="根据上级id查询商品分类列表")
+	public BaseResponse findByParentId(Long parentId){
+		BaseResponse response = new BaseResponse();
+		try{
+			List<ItemCat> list = itemCatService.findByParentId(parentId);
+			response.setData(list);
+		}catch (Exception e) {
+			e.printStackTrace();
+			response.setErrorMessage(e.getMessage());
+		}
+		return response;
+	}
+
+
 	
 }

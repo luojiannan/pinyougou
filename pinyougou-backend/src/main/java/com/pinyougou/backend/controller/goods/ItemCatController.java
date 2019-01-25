@@ -107,5 +107,16 @@ public class ItemCatController {
 		}
 		return itemCatFeign.search(itemCatDTO, page, rows);
 	}
+
+	/**
+	 *
+	 * @param parentId
+	 * @return
+     */
+	@GetMapping("/findByParentId")
+	@ApiOperation(value="根据上级id查询商品分类列表", notes="根据上级id查询商品分类列表")
+	public BaseResponse findByParentId(Long parentId) {
+		return itemCatFeign.findByParentId(parentId);
+	}
 	
 }

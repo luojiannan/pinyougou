@@ -57,7 +57,6 @@ public interface IItemCatFeign {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/findOne")
 	@RequestMapping(value = "itemCat/findOne", method = RequestMethod.GET)
 	@ApiOperation(value="根据id查询类目", notes="根据id查询类目")
 	BaseResponse findOne(@RequestParam("id")Long id);
@@ -67,7 +66,6 @@ public interface IItemCatFeign {
 	 * @param ids
 	 * @return
 	 */
-	@GetMapping("/delete")
 	@RequestMapping(value = "itemCat/delete", method = RequestMethod.GET)
 	@ApiOperation(value="批量删除类目", notes="批量删除类目")
 	BaseResponse delete(@RequestParam("ids")Long [] ids);
@@ -78,9 +76,12 @@ public interface IItemCatFeign {
 	 * @param rows
 	 * @return
 	 */
-	@PostMapping("/search")
 	@RequestMapping(value = "itemCat/search", method = RequestMethod.POST)
 	@ApiOperation(value="分页查询类目", notes="分页查询类目")
 	BaseResponse search(@RequestBody ItemCatDTO itemCat, @RequestParam("page") int page,@RequestParam("rows") int rows);
+
+	@RequestMapping(value = "itemCat/findByParentId", method = RequestMethod.GET)
+	@ApiOperation(value="分页查询类目", notes="分页查询类目")
+	BaseResponse findByParentId(@RequestParam("parentId")Long parentId);
 	
 }
