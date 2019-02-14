@@ -29,6 +29,7 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 				$scope.entity= response.result;
 			}
 		);				
+		
 	}
 	
 	//保存 
@@ -48,7 +49,7 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 				}else{
 					alert(response.message);
 				}
-			}		
+			}
 		);				
 	}
 	

@@ -1,55 +1,48 @@
-package com.pinyougou.goods.dao.entity;
+package com.pinyougou.backend.dto;
 
-import javax.persistence.*;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
 /**
  * @author ljn
- * 商品
+ * @date 2019/1/25.
  */
-@Table(name = "tb_goods")
 public class Goods {
+
     /**
      * 主键
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "JDBC")
     private Long id;
 
     /**
      * 商家ID
      */
-    @Column(name = "seller_id")
     private String sellerId;
 
     /**
      * SPU名
      */
-    @Column(name = "goods_name")
     private String goodsName;
 
     /**
      * 默认SKU
      */
-    @Column(name = "default_item_id")
     private Long defaultItemId;
 
     /**
      * 状态
      */
-    @Column(name = "audit_status")
     private String auditStatus;
 
     /**
      * 是否上架
      */
-    @Column(name = "is_marketable")
     private String isMarketable;
 
     /**
      * 品牌
      */
-    @Column(name = "brand_id")
     private Long brandId;
 
     /**
@@ -60,25 +53,21 @@ public class Goods {
     /**
      * 一级类目
      */
-    @Column(name = "category1_id")
     private Long category1Id;
 
     /**
      * 二级类目
      */
-    @Column(name = "category2_id")
     private Long category2Id;
 
     /**
      * 三级类目
      */
-    @Column(name = "category3_id")
     private Long category3Id;
 
     /**
      * 小图
      */
-    @Column(name = "small_pic")
     private String smallPic;
 
     /**
@@ -89,19 +78,16 @@ public class Goods {
     /**
      * 分类模板ID
      */
-    @Column(name = "type_template_id")
     private Long typeTemplateId;
 
     /**
      * 是否启用规格
      */
-    @Column(name = "is_enable_spec")
     private String isEnableSpec;
 
     /**
      * 是否删除
      */
-    @Column(name = "is_delete")
     private String isDelete;
 
     /**

@@ -3,11 +3,14 @@ package com.pinyougou.goods.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.pinyougou.goods.dao.entity.Goods;
+import com.pinyougou.goods.dao.mapper.GoodsDescMapper;
 import com.pinyougou.goods.dao.mapper.GoodsMapper;
+import com.pinyougou.goods.dto.GoodsDTO;
 import com.pinyougou.goods.service.IGoodsService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +24,9 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Autowired
     private GoodsMapper goodsMapper;
+
+    @Autowired
+    private GoodsDescMapper goodsDescMapper;
 
     /**
      * 查询全部
@@ -44,8 +50,14 @@ public class GoodsServiceImpl implements IGoodsService {
      * 增加
      */
     @Override
-    public void add(Goods goods) {
+    @Transactional(rollbackFor = Exception.class)
+    public void add(GoodsDTO goodsDTO) {
+        Goods goods = goodsDTO.getGoods();
+        //状态：未审核：0
+        goods.setAuditStatus("0");
         goodsMapper.insert(goods);
+        goodsDTO.getGoodsDesc().setGoodsId(goods.getId());
+        goodsDescMapper.insert(goodsDTO.getGoodsDesc());
     }
 
 

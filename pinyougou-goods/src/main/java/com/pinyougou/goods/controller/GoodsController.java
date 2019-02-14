@@ -78,8 +78,7 @@ public class GoodsController {
 	public BaseResponse add(@RequestBody GoodsDTO goodsDTO){
 		BaseResponse response = new BaseResponse();
 		try {
-			Goods goods = BeanMapper.map(goodsDTO, Goods.class);
-			goodsService.add(goods);
+			goodsService.add(goodsDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.setErrorMessage(e.getMessage());

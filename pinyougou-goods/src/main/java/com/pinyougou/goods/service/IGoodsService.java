@@ -2,6 +2,7 @@ package com.pinyougou.goods.service;
 
 import com.github.pagehelper.Page;
 import com.pinyougou.goods.dao.entity.Goods;
+import com.pinyougou.goods.dto.GoodsDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public interface IGoodsService {
     /**
      * 增加
      */
-    void add(Goods goods);
+    void add(GoodsDTO goodsDTO);
 
 
     /**

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @author ljn
  * @date 2019/1/21.
  */
-@Component
+@Component("dispenseConsumer")
 public class UserRedis extends AbstractRedis {
 
     @Autowired

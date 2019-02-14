@@ -52,7 +52,7 @@ public class SpecificationServiceImpl implements ISpecificationService {
 	@Override
 	public Page findPage(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		return (Page<Specification>) specificationMapper.selectByExample(null);
+        return (Page<Specification>) specificationMapper.selectByExample(null);
 	}
 
 	/**
@@ -69,7 +69,8 @@ public class SpecificationServiceImpl implements ISpecificationService {
 			return;
 		}
 		this.addSpecificationOptions(specificationOptions, id);
-	}
+        Class<? extends SpecificationDTO> aClass = specificationDTO.getClass();
+    }
 
 	
 	/**
