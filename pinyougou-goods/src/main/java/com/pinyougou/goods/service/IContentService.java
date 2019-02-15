@@ -11,4 +11,6 @@ import java.util.List;
 public interface IContentService {
 
     List<Content> findByCategoryId(Long id);
+
+    void addContent(Content content);
 }

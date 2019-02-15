@@ -29,9 +29,9 @@ public class ContentController {
         try{
             List<Content> contentList = contentService.findByCategoryId(id);
             response.setData(contentList);
-        }catch (Exception e) {
+        }catch (RuntimeException e) {
             response.setCode("01");
-            response.setErrorMessage("新增品牌发生错误");
+            response.setErrorMessage("根据分类id查询广告发生错误");
         }
         return response;
     }
