@@ -28,4 +28,15 @@ public class GoodsController {
     public BaseResponse findAll() {
         return goodsFeign.findAll();
     }
+
+    /**
+     * 根据分类id查询广告
+     * @return
+     */
+    @GetMapping("/findByCategoryId")
+    @ApiOperation(value="根据分类id查询广告", notes="根据分类id查询广告")
+    public BaseResponse findByCategoryId(Long id) {
+        return goodsFeign.findByCategoryId(id);
+    }
+
 }

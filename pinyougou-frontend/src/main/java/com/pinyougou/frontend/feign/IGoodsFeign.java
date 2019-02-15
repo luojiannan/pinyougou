@@ -6,6 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author ljn
@@ -22,4 +23,12 @@ public interface IGoodsFeign {
     @RequestMapping(value = "goods/findAll", method = RequestMethod.GET)
     @ApiOperation(value="返回全部商品列表", notes="返回全部商品列表")
     BaseResponse findAll();
+
+    /**
+     * 根据分类id查询广告
+     * @return
+     */
+    @RequestMapping(value = "content/findByCategoryId", method = RequestMethod.GET)
+    @ApiOperation(value="根据分类id查询广告", notes="根据分类id查询广告")
+    BaseResponse findByCategoryId(@RequestParam("id") Long id);
 }

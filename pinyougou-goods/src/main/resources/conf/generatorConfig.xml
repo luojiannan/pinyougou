@@ -32,39 +32,13 @@
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
         <!-- 要生成的那些表 -->
 
-        <!--<table tableName="tb_brand" domainObjectName="Brand" >-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        <!--</table>-->
+        <table tableName="tb_content_category" domainObjectName="ContentCategory" >
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
 
-        <!--<table tableName="tb_specification" domainObjectName="Specification">-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        <!--</table>-->
-
-        <!--<table tableName="tb_specification_option" domainObjectName="SpecificationOption">-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        <!--</table>-->
-
-        <!--<table tableName="tb_seller" domainObjectName="Seller">-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        <!--</table>-->
-
-        <!--<table tableName="tb_type_template" domainObjectName="TypeTemplate">-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        <!--</table>-->
-
-        <!--<table tableName="tb_goods_desc" domainObjectName="GoodsDesc">-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        <!--</table>-->
-
-        <!--<table tableName="tb_goods" domainObjectName="Goods">-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        <!--</table>-->
-
-        <!--<table tableName="tb_item" domainObjectName="Item">-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        <!--</table>-->
-
-
+        <table tableName="tb_content" domainObjectName="Content" >
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>
