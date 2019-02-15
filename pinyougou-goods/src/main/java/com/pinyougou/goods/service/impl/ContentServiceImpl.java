@@ -7,6 +7,7 @@ import com.pinyougou.goods.service.IContentService;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -25,8 +26,11 @@ public class ContentServiceImpl implements IContentService{
 
     @Override
     public List<Content> findByCategoryId(Long id) {
-        Content content = new Content();
-        content.setCategoryId(id);
-        return contentMapper.selectByRowBounds(content, new RowBounds(0, 20));
+//        PageHelper.startPage(1, 20);
+        Example example = new Example(Content.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("status","1");
+        criteria.andEqualTo("categoryId",id);
+        return contentMapper.selectByExampleAndRowBounds(example, new RowBounds(0, 20));
     }
 }
