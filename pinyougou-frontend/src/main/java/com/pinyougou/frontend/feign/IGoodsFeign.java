@@ -30,5 +30,5 @@ public interface IGoodsFeign {
      */
     @RequestMapping(value = "content/findByCategoryId", method = RequestMethod.GET)
     @ApiOperation(value="根据分类id查询广告", notes="根据分类id查询广告")
-    BaseResponse findByCategoryId(@RequestParam("id") Long id);
+    BaseResponse findByCategoryId(@RequestParam("categoryId") Long categoryId);
 }
