@@ -31,6 +31,7 @@ public class ContentServiceImpl implements IContentService{
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("status","1");
         criteria.andEqualTo("categoryId",id);
+        example.setOrderByClause("sort_order asc");
         return contentMapper.selectByExampleAndRowBounds(example, new RowBounds(0, 20));
     }
 }
