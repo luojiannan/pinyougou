@@ -1,5 +1,6 @@
 package com.pinyougou.backend.controller.goods;
 
+import com.pinyougou.backend.dto.Goods;
 import com.pinyougou.backend.dto.GoodsDTO;
 import com.pinyougou.backend.feign.IGoodsFeign;
 import com.pinyougou.common.dto.BaseResponse;
@@ -100,6 +101,15 @@ public class GoodsController {
 	@PostMapping("/search")
 	@ApiOperation(value="查询+分页商品", notes="查询+分页商品")
 	public BaseResponse search(@RequestBody GoodsDTO goods, Integer page, Integer rows  ){
+//		Session session = SecurityUtils.getSubject().getSession();
+//		User user = (User) session.getAttribute(Constants.SESSION_USER_INFO);
+//		goods.getGoods().setSellerId(user.getId());
+		Goods goods1 = goods.getGoods();
+		if (goods1 == null) {
+			goods1 = new Goods();
+			goods.setGoods(goods1);
+		}
+		goods.getGoods().setSellerId("qiandu");
 		if (page == null) {
 			page = 1;
 		}

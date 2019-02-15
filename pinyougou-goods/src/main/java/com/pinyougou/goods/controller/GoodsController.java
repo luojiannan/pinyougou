@@ -155,7 +155,7 @@ public class GoodsController {
 			PageHelper.startPage(page,rows);
 			Map<String,Object> params = new HashMap<String,Object>();
 			if (goods != null) {
-				params = ParamUtils.convertMap(goods);
+				params = ParamUtils.convertMap(goods.getGoods());
 			}
 			Page<Goods> data = (Page<Goods>) goodsService.findPage(params, "id", false);
 			response.setData(data.getResult());

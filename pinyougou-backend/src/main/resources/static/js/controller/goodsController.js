@@ -69,7 +69,8 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService, i
 	$scope.search=function(page,rows){			
 		goodsService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.data;	
+				$scope.list=response.data;
+				console.log($scope.list)
 				$scope.paginationConf.totalItems=response.totalCount;//更新总记录数
 			}			
 		);
@@ -116,10 +117,23 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService, i
 				//列表类型转换
 				$scope.typeTemplate.brandIds = JSON.parse($scope.typeTemplate.brandIds)
 				//扩展属性
-				console.log($scope.entity)
 				$scope.entity.goodsDesc.customAttributeItems = JSON.parse($scope.typeTemplate.customAttributeItems)
 			}
 		)
 	})
-    
+
+	$scope.status = ['未审核','已审核','审核未通过','已关闭']
+
+	//商品分类列表
+	$scope.itemCatList=[];
+    $scope.findItemCatList=function(){
+		itemCatService.findAll().success(
+			function(response){
+				var list = response.data;
+				for (var i=0;i<list.length;i++) {
+					$scope.itemCatList[list[i].id]=list[i].name;
+				}
+			}
+		)
+	}
 });	

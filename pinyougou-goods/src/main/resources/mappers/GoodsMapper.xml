@@ -47,7 +47,7 @@
           AND seller_id = #{sellerId}
         </if>
         <if test="goodsName != null and goodsName != ''">
-          AND name LIKE '%${goodsName}%'
+          AND goods_name LIKE '%${goodsName}%'
         </if>
         <if test="auditStatus != null ">
           AND audit_status = #{auditStatus}
