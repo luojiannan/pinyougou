@@ -55,44 +55,27 @@ public class UserController {
         return response;
     }
 
-//    @GetMapping("login")
-//    @ApiOperation(value="用户登录", notes="用户登录")
-//    public BaseResponse login(String userName, String password) {
-//        BaseResponse response = new BaseResponse();
-//        try {
-//            if (StringUtils.isBlank(userName)) {
-//                throw new RuntimeException("用户名称不能为空");
-//            }
-//            if (StringUtils.isBlank(password)) {
-//                throw new RuntimeException("用户密码不能为空");
-//            }
-//            Subject subject = SecurityUtils.getSubject();
-//            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
-//            subject.login(usernamePasswordToken);
-//            response.setMessage("登录成功");
-//        }catch (RuntimeException e) {
-//            e.printStackTrace();
-//            response.setErrorMessage(e.getMessage());
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return response;
-//    }
-//
-//    @GetMapping("logout")
-//    @ApiOperation(value="用户退出登录", notes="用户退出登录")
-//    public BaseResponse logout() {
-//        BaseResponse response = new BaseResponse();
-//        try {
-//            Subject subject = SecurityUtils.getSubject();
-//            subject.logout();
-//        }catch (RuntimeException e) {
-//            e.printStackTrace();
-//            response.setErrorMessage(e.getMessage());
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//            response.setErrorMessage(e.getMessage());
-//        }
-//        return response;
-//    }
+    @GetMapping("register")
+    @ApiOperation(value="注册", notes="注册")
+    public BaseResponse register(String userName,String password,String code,String phoneNum){
+        BaseResponse response = new BaseResponse();
+        try{
+            userService.register(userName, password, code, phoneNum);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    @GetMapping("getSmsCode")
+    @ApiOperation(value="获取短信验证码", notes="获取短信验证码")
+    public BaseResponse getSmsCode(String phoneNum){
+        BaseResponse response = new BaseResponse();
+        try{
+            userService.getSmsCode(phoneNum);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
 }

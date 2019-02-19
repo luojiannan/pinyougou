@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
+
 /**
  * @author ljn
  * @date 2018/12/20.
@@ -40,4 +42,30 @@ public class UserServiceImpl implements IUserService {
         criteria.andEqualTo("password", password);
         return userMapper.selectOneByExample(example);
     }
+
+    @Override
+    public void getSmsCode(String phoneNum) {
+        String code = (long)(Math.random() * 1000000) + "";
+        userRedis.addRegisterCode(phoneNum, code);
+        // TODO: 2019/2/19 调用阿里大于发送短信
+    }
+
+    @Override
+    public void register(String userName,String password,String code,String phoneNum) {
+        String registerCode = userRedis.getRegisterCode(phoneNum);
+        if (!code.equals(registerCode)) {
+            throw new RuntimeException("短信验证码错误");
+        }
+        /*
+        校验用户名是否合法
+         */
+        User user = new User();
+        user.setUsername(userName);
+        user.setPassword(password);
+        user.setPhone(phoneNum);
+        user.setCreated(new Date());
+        userMapper.insert(user);
+    }
+
+
 }

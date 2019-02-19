@@ -12,4 +12,8 @@ public interface IUserService {
     User findByName(String userName);
 
     User login(String userName, String password);
+
+    void getSmsCode(String phoneNum);
+
+    void register(String userName,String password,String code,String phoneNum);
 }

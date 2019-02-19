@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author ljn
  * @date 2019/1/21.
@@ -41,5 +43,15 @@ public class UserRedis extends AbstractRedis {
         }
         JSONObject jsonObject = JSONObject.parseObject(json);
         return JSON.toJavaObject(jsonObject, User.class);
+    }
+
+    public void addRegisterCode(String phoneNum, String code) {
+        valueOps.set("register:" + phoneNum, code);
+        stringRedisTemplate.expire("register:" + phoneNum, 1L, TimeUnit.MINUTES);
+    }
+
+    public String getRegisterCode(String phoneNum) {
+        String code = valueOps.get("register:" + phoneNum);
+        return code;
     }
 }
