@@ -32,11 +32,11 @@
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
         <!-- 要生成的那些表 -->
 
-        <table tableName="tb_content_category" domainObjectName="ContentCategory" >
+        <table tableName="tb_order" domainObjectName="Order" >
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
 
-        <table tableName="tb_content" domainObjectName="Content" >
+        <table tableName="tb_order_item" domainObjectName="OrderItem" >
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
 
