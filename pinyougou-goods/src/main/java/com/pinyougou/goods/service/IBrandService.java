@@ -19,7 +19,7 @@ public interface IBrandService {
 
     Brand findById(Long id);
 
-    void batchDelete(List<Long> ids);
+    String batchDelete(List<Long> ids);
 
     List<Brand> selectByMap(Map<String,Object> map,String orderBy,boolean isAsc);
 

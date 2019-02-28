@@ -44,13 +44,14 @@ public class BrandServiceImpl implements IBrandService {
     }
 
     @Override
-    public void batchDelete(List<Long> ids) {
+    public String batchDelete(List<Long> ids) {
         if (CollectionUtils.isEmpty(ids)) {
-            return;
+            return "返回值";
         }
         for (Long id : ids) {
             brandMapper.deleteByPrimaryKey(id);
         }
+        return "返回值";
     }
 
     @Override
