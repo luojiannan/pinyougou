@@ -30,4 +30,8 @@ public class AAA {
         }
         System.out.println(map);
     }
+
+    public void a() {
+        System.out.println("222");
+    }
 }
