@@ -41,10 +41,8 @@ public class ReflectDemo extends AAA {
         int length = new int[]{1}.length;
     }
 
-    @AccessLimit(value="水杯")
     private String name;
 
-    @AccessLimit(id=4)
     private Long id;
 
     public String getName() {

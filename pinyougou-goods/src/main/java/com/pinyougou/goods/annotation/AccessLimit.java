@@ -7,12 +7,12 @@ import java.lang.annotation.*;
  * @date 2019/2/27.
  */
 @Documented
-@Target(ElementType.FIELD)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AccessLimit {
 
     public String value() default "";
 
-    public long id() default 0L;
+    public long id() default 5L;
 
 }

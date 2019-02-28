@@ -1,5 +1,6 @@
 package com.pinyougou.goods.aop;
 
+import com.pinyougou.goods.annotation.AccessLimit;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -17,9 +18,9 @@ public class BrandAspect {
      * 前置通知
      */
 
-    @Before("execution(* com.pinyougou.goods.service.impl.BrandServiceImpl.createBrand(..))")
-    public void beforeAdvice(JoinPoint joinPoint){
-        System.out.println("添加品牌前置处理");
+    @Before("execution(* com.pinyougou.goods.service.impl.BrandServiceImpl.createBrand(..)) && @annotation(accessLimit)")
+    public void beforeAdvice(JoinPoint joinPoint, AccessLimit accessLimit){
+        System.out.println("添加品牌前置处理" + accessLimit.id());
     }
 
     /**

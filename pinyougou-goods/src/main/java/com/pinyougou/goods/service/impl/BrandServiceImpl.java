@@ -1,5 +1,6 @@
 package com.pinyougou.goods.service.impl;
 
+import com.pinyougou.goods.annotation.AccessLimit;
 import com.pinyougou.goods.dao.entity.Brand;
 import com.pinyougou.goods.dao.mapper.BrandMapper;
 import com.pinyougou.goods.service.IBrandService;
@@ -27,6 +28,7 @@ public class BrandServiceImpl implements IBrandService {
     }
 
     @Override
+    @AccessLimit
     public void createBrand(Brand brand) {
         brandMapper.insert(brand);
     }
