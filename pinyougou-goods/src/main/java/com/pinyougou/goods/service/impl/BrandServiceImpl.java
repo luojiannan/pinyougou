@@ -71,6 +71,11 @@ public class BrandServiceImpl implements IBrandService {
 
     @Override
     public List<Map> selectOptionList() {
+        try{
+            int i = 1 / 0;
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
         return brandMapper.selectOptionList();
     }
 }

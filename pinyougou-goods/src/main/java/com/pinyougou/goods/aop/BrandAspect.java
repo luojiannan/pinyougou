@@ -4,6 +4,7 @@ import com.pinyougou.goods.annotation.AccessLimit;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class BrandAspect {
+public class BrandAspect implements Ordered{
 
     /**
      * 前置通知
@@ -63,4 +64,12 @@ public class BrandAspect {
         System.out.println("抛出异常通知"+ e.getMessage());
     }
 
+    /**
+     * 实现Ordered接口，通过该方法的返回值来确定，切面的执行顺序
+     * @return
+     */
+    @Override
+    public int getOrder() {
+        return 0;
+    }
 }
