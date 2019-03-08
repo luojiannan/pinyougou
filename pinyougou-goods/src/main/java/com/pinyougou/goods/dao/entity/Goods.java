@@ -9,6 +9,9 @@ import java.math.BigDecimal;
  */
 @Table(name = "tb_goods")
 public class Goods {
+    public Goods() {
+    }
+
     /**
      * 主键
      */
@@ -103,6 +106,21 @@ public class Goods {
      */
     @Column(name = "is_delete")
     private String isDelete;
+
+    public Goods(String goodsName, String caption, BigDecimal price) {
+        this.goodsName = goodsName;
+        this.price = price;
+        this.caption = caption;
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsName='" + goodsName + '\'' +
+                ", price=" + price +
+                ", caption='" + caption + '\'' +
+                '}';
+    }
 
     /**
      * 获取主键

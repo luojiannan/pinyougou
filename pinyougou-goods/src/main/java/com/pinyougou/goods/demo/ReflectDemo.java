@@ -4,6 +4,8 @@ import com.pinyougou.goods.annotation.AccessLimit;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author ljn
@@ -12,6 +14,9 @@ import java.lang.reflect.Method;
 public class ReflectDemo extends AAA {
 
     public static void main(String[] args) {
+        Map<String,Object> map = new ConcurrentHashMap<>();
+        map.put("","");
+
         Class<? extends ReflectDemo> aClass = new ReflectDemo().getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
