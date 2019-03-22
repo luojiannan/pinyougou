@@ -8,12 +8,16 @@ import java.util.List;
  * @author ljn
  * @date 2019/3/13.
  */
-public class ListDemo {
+public class ListDemo extends Thread{
 
     public static void main(String[] args) {
         String[] arr = new String[]{"one","two","three"};
-        System.out.println(Arrays.toString(arr));
+//        System.out.println(Arrays.toString(arr));
         List<String> list = Arrays.asList(arr);
+        list.stream().filter((a) -> a.startsWith("one")).forEach(System.out::println);
+        System.out.println("stream大写：");
+        list.stream().map(String::toUpperCase).forEach(System.out::println);
+        list.sort((a, b) -> b.compareTo(a));
         List<String> copyList = new ArrayList<>(list);
 //        list.add("ss");
         copyList.add("four");
@@ -27,5 +31,6 @@ public class ListDemo {
 
         int myA[];
         myA = new int[5];
+
     }
 }
