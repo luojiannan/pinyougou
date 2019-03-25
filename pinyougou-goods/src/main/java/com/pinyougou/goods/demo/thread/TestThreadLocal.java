@@ -4,7 +4,7 @@ package com.pinyougou.goods.demo.thread;
  * @author ljn
  * @date 2019/3/25.
  */
-public class TestThread {
+public class TestThreadLocal {
 
     private static ThreadLocal<Long> threadId = new ThreadLocal<Long>(){
         @Override
@@ -25,7 +25,7 @@ public class TestThread {
     }
 
     public static void main(String[] args) {
-        TestThread test = new TestThread();
+        TestThreadLocal test = new TestThreadLocal();
         test();
         System.out.println(threadId.get());
         System.out.println(threadName.get());
