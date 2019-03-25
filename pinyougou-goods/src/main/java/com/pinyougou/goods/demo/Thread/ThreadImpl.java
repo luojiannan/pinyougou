@@ -1,4 +1,4 @@
-package com.pinyougou.goods.demo.Thread;
+package com.pinyougou.goods.demo.thread;
 
 /**
  * @author ljn
