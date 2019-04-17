@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 /**
  * @author ljn
  * @date 2019/2/18.
+ * 短信通知
  */
 public class CommonRpc {
 
