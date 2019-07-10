@@ -1,0 +1,13 @@
+server:
+  port: 2007
+spring:
+  application:
+    name: pinyougou-config
+  cloud:
+    config:
+      server:
+        git:
+          search-paths: config-repository
+          uri: https://github.com/luojiannan/pinyougou.git
+          username:
+          password:
