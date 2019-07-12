@@ -12,6 +12,6 @@
   </resultMap>
 
   <select id="selectPermissionList" parameterType="long" resultMap="com.pinyougou.user.dao.mapper.PermissionMapper.BaseResultMap">
-    select c.* from tb_role a join tb_role_permission b on a.id = b.role_id join tb_permission c on b.permission_id = c.id;
+    select c.* from tb_role a join tb_role_permission b on a.id = b.role_id join tb_permission c on b.permission_id = c.id and a.id = #{id};
   </select>
 </mapper>
