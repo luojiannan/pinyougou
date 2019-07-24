@@ -36,3 +36,8 @@ eureka:
 ribbon.ReadTimeout: 60000
 # 设置连接超时时间
 ribbon.ConnectTimeout: 600
+
+#开启熔断机制
+feign:
+  hystrix:
+    enabled: true
