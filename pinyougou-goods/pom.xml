@@ -33,7 +33,7 @@
 		<mapper.plugin>tk.mybatis.mapper.generator.MapperPlugin</mapper.plugin>
 		<mapper.Mapper>tk.mybatis.mapper.common.Mapper</mapper.Mapper>
 		<tk.mybatis.boot.version>1.2.4</tk.mybatis.boot.version>
-		<json.version>1.2.22</json.version>
+		<json.version>1.2.83</json.version>
 		<mysql.version>5.1.24</mysql.version>
 	</properties>
 
